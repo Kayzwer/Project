@@ -63,7 +63,7 @@
                                         <form action="{{ route('receipts.destroy', $receipt) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Receipt" onclick="confirm('Estás seguro que quieres eliminar este recibo? Todos sus registros serán eliminados permanentemente, si ya está finalizado el stock de los productos permanecerán.') ? this.parentElement.submit() : ''">
+                                            <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Receipt" onclick="confirm('Are you sure you want to delete this receipt\n({{ $receipt->title }}, provider: {{ $receipt->provider->name }}, number of products: {{ $receipt->products->count() }}, stock: {{ $receipt->products->sum('stock') }})?') ? this.parentElement.submit() : ''">
                                                 <i class="tim-icons icon-simple-remove"></i>
                                             </button>
                                         </form>
