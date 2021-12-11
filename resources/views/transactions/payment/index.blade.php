@@ -46,7 +46,7 @@
                                             <form action="{{ route('transactions.destroy', $transaction) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Payment" onclick="confirm('Are you sure you want to delete this payment ({{ $transaction->title }}, provider: {{ $transaction->provider->name }}, amount: {{ format_money($transaction->amount) }})?') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Payment" onclick="confirm('Are you sure you want to delete this payment?\n\nPlease check the details\nPayment: {{ $transaction->title }}\nProvider: {{ $transaction->provider->name }}\nAmount: {{ format_money($transaction->amount) }}') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>

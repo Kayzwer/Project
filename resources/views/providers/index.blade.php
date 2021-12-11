@@ -51,7 +51,7 @@
                                             <form action="{{ route('providers.destroy', $provider) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Provider" onclick="confirm('Are you sure you want to delete this provider ({{ $provider->name }}, number of payments: {{ $provider->transactions->count() }}, total payment: {{ format_money(abs($provider->transactions->sum('amount'))) }})?') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Provider" onclick="confirm('Are you sure you want to delete this provider? The payment records will not be deleted\n\nPlease check the details\nProvider: {{ $provider->name }}\nNumber of payments: {{ $provider->transactions->count() }}\nTotal payment: {{ format_money(abs($provider->transactions->sum('amount'))) }}') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>

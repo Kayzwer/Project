@@ -44,7 +44,7 @@
                                         <form action="{{ route('transfer.destroy', $transfer) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Transfer" onclick="confirm('Are you sure you want to delete this transfer ({{ $transfer->title }}, amount sent: ${{ $transfer->sended_amount }}, amount received: ${{ $transfer->received_amount }})?') ? this.parentElement.submit() : ''">
+                                            <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Transfer" onclick="confirm('Are you sure you want to delete this transfer?\n\nPlease check the details\nTransfer: {{ $transfer->title }}\nAmount sent: ${{ $transfer->sended_amount }}\nAmount received: ${{ $transfer->received_amount }}') ? this.parentElement.submit() : ''">
                                                 <i class="tim-icons icon-simple-remove"></i>
                                             </button>
                                         </form>

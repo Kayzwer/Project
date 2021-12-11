@@ -45,7 +45,7 @@
                                             <form action="{{ route('categories.destroy', $category) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Category" onclick="confirm('Are you sure you want to delete this category\n({{ $category->name }}, number of products: {{ count($category->products) }}, total stock: {{ $category->products->sum('stock') }})? All products belonging to it will be deleted') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Category" onclick="confirm('Are you sure you want to delete this category? All products belonging to it will be deleted and records will still exist\n\nPlease check the details\nCategory: {{ $category->name }}\nNumber of products: {{ count($category->products) }}\nTotal stock: {{ $category->products->sum('stock') }}') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>

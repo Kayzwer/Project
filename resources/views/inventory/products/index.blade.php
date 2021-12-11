@@ -48,7 +48,7 @@
                                             <form action="{{ route('products.destroy', $product) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Product" onclick="confirm('Are you sure you want to remove this product ({{ $product->name }}, base price: {{ format_money($product->price) }}, stock: {{ $product->stock }})?') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Product" onclick="confirm('Are you sure you want to remove this product? The records that contain it will still exist.\n\nPlease check the details\nProduct: {{ $product->name }}\nCategory: {{ $product->category->name }}\nBase price: {{ format_money($product->price) }}\nStock: {{ $product->stock }}') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>

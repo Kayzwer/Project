@@ -43,7 +43,7 @@
                                             <form action="{{ route('methods.destroy', $method) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Method" onclick="confirm('Are you sure you want to remove this method ({{ $method->name }})?') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Method" onclick="confirm('Are you sure you want to remove this method?\n\nPlease check the details\nMethod: {{ $method->name }}\nMonthly balance: {{ format_money($method->transactions->sum('amount')) }}') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>
