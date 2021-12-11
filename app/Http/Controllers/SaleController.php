@@ -83,7 +83,7 @@ class SaleController extends Controller
 
         return redirect()
             ->route('sales.index')
-            ->withStatus('The sale record has been successfully deleted.');
+            ->withStatus('Sale removed successfully.');
     }
 
     public function finalize(Sale $sale)
@@ -106,7 +106,7 @@ class SaleController extends Controller
         $sale->save();
         $sale->client->save();
 
-        return back()->withStatus('The sale has been successfully completed.');
+        return back()->withStatus('The sale has been completed successfully.');
     }
 
     public function addproduct(Sale $sale)
@@ -140,14 +140,14 @@ class SaleController extends Controller
 
         $soldproduct->update($request->all());
 
-        return redirect()->route('sales.show', $sale)->withStatus('Product successfully modified.');
+        return redirect()->route('sales.show', $sale)->withStatus('Product updated successfully.');
     }
 
     public function destroyproduct(Sale $sale, SoldProduct $soldproduct)
     {
         $soldproduct->delete();
 
-        return back()->withStatus('The product has been disposed of successfully.');
+        return back()->withStatus('Product disposed successfully.');
     }
 
     public function addtransaction(Sale $sale)
@@ -206,14 +206,14 @@ class SaleController extends Controller
 
         return redirect()
             ->route('sales.show', compact('sale'))
-            ->withStatus('Successfully modified transaction.');
+            ->withStatus('Transaction updated successfully.');
     }
 
     public function destroytransaction(Sale $sale, Transaction $transaction)
     {
         $transaction->delete();
 
-        return back()->withStatus('Transaction deleted successfully.');
+        return back()->withStatus('Transaction removed successfully.');
     }
 
     public function export(Request $request)

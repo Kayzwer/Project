@@ -138,7 +138,7 @@ class TransactionController extends Controller
 
             return redirect()
                 ->route('clients.show', $request->get('client_id'))
-                ->withStatus('Successfully registered transaction.');
+                ->withStatus('Transaction registered successfully.');
         }
 
         switch ($request->get('type')) {
@@ -169,12 +169,12 @@ class TransactionController extends Controller
 
                 return redirect()
                     ->route('transactions.type', ['type' => 'income'])
-                    ->withStatus('Login successfully registered.');
+                    ->withStatus('Login registered successfully.');
 
             default:
                 return redirect()
                     ->route('transactions.index')
-                    ->withStatus('Successfully registered transaction.');
+                    ->withStatus('Transaction registered successfully.');
         }
     }
 
@@ -235,12 +235,12 @@ class TransactionController extends Controller
 
                 return redirect()
                     ->route('transactions.type', ['type' => 'payment'])
-                    ->withStatus('Payment updated satisfactorily.');
+                    ->withStatus('Payment updated successfully.');
 
             case 'income':
                 return redirect()
                     ->route('transactions.type', ['type' => 'income'])
-                    ->withStatus('Login successfully updated.');
+                    ->withStatus('Income updated successfully.');
 
             default:
                 return redirect()
@@ -271,16 +271,16 @@ class TransactionController extends Controller
 
         switch ($type) {
             case 'expense':
-                return back()->withStatus('Expenditure successfully removed.');
+                return back()->withStatus('Expenditure removed successfully.');
 
             case 'payment':
-                return back()->withStatus('Payment successfully removed.');
+                return back()->withStatus('Payment removed successfully.');
 
             case 'income':
-                return back()->withStatus('Entry successfully removed.');
+                return back()->withStatus('Income removed successfully.');
 
             default:
-                return back()->withStatus('Transaction deleted successfully.');
+                return back()->withStatus('Transaction removed successfully.');
         }
     }
 

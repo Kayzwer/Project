@@ -76,7 +76,7 @@ class ReceiptController extends Controller
 
         return redirect()
             ->route('receipts.index')
-            ->withStatus('Receipt successfully removed.');
+            ->withStatus('Receipt removed successfully.');
     }
 
     /**
@@ -96,7 +96,7 @@ class ReceiptController extends Controller
             $receivedproduct->product->save();
         }
 
-        return back()->withStatus('Receipt successfully completed.');
+        return back()->withStatus('Receipt completed successfully.');
     }
 
     /**
@@ -154,7 +154,7 @@ class ReceiptController extends Controller
 
         return redirect()
             ->route('receipts.show', $receipt)
-            ->withStatus('Product edited successfully.');
+            ->withStatus('Product updated successfully.');
     }
 
     /**

@@ -45,7 +45,7 @@ class ProviderController extends Controller
 
         return redirect()
             ->route('providers.index')
-            ->withStatus('Successfully Registered Vendor.');
+            ->withStatus('Provider registered successfully.');
     }
 
     /**

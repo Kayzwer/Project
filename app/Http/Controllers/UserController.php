@@ -44,7 +44,7 @@ class UserController extends Controller
 
         User::create($request->all());
 
-        return redirect()->route('users.index')->withStatus('User successfully created.');
+        return redirect()->route('users.index')->withStatus('User created successfully.');
     }
 
     /**
@@ -75,7 +75,7 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        return redirect()->route('users.index')->withStatus('User successfully updated.');
+        return redirect()->route('users.index')->withStatus('User updated successfully.');
     }
 
     /**
@@ -88,6 +88,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('users.index')->withStatus('User successfully deleted.');
+        return redirect()->route('users.index')->withStatus('User removed successfully.');
     }
 }

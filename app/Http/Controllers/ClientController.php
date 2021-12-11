@@ -44,7 +44,7 @@ class ClientController extends Controller
     {
         $client->create($request->all());
         
-        return redirect()->route('clients.index')->withStatus('Successfully registered customer.');
+        return redirect()->route('clients.index')->withStatus('Customer registered successfully.');
     }
 
     /**
@@ -82,7 +82,7 @@ class ClientController extends Controller
 
         return redirect()
             ->route('clients.index')
-            ->withStatus('Successfully modified customer.');
+            ->withStatus('Customer updated successfully.');
     }
 
     /**
@@ -97,7 +97,7 @@ class ClientController extends Controller
 
         return redirect()
             ->route('clients.index')
-            ->withStatus('Customer successfully removed.');
+            ->withStatus('Customer removed successfully.');
     }
 
     public function addtransaction(Client $client)

@@ -42,7 +42,7 @@ class ProductCategoryController extends Controller
 
         return redirect()
             ->route('categories.index')
-            ->withStatus('Category successfully created.');
+            ->withStatus('Category created successfully.');
     }
 
     /**
@@ -83,7 +83,7 @@ class ProductCategoryController extends Controller
 
         return redirect()
             ->route('categories.index')
-            ->withStatus('Category successfully updated.');
+            ->withStatus('Category updated successfully.');
     }
 
     /**
@@ -98,6 +98,6 @@ class ProductCategoryController extends Controller
 
         return redirect()
             ->route('categories.index')
-            ->withStatus('Category successfully deleted.');
+            ->withStatus('Category deleted successfully.');
     }
 }

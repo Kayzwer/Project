@@ -44,7 +44,7 @@ class MethodController extends Controller
 
         return redirect()
             ->route('methods.index')
-            ->withStatus('Payment method successfully created.');
+            ->withStatus('Payment method created successfully.');
     }
 
     /**
@@ -105,7 +105,7 @@ class MethodController extends Controller
 
         return redirect()
             ->route('methods.index')
-            ->withStatus('Payment method updated satisfactorily.');
+            ->withStatus('Payment method updated successfully.');
     }
 
     /**
@@ -118,6 +118,6 @@ class MethodController extends Controller
     {
         $method->delete();
         
-        return back()->withStatus('Payment method successfully removed.');
+        return back()->withStatus('Payment method removed successfully.');
     }
 }

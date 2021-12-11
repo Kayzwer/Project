@@ -81,7 +81,7 @@ class TransferController extends Controller
         $transfer->delete();
 
         return back()
-            ->withStatus('The transfer and its associated transactions have been successfully removed.');
+            ->withStatus('Transfer removed successfully.');
     }
 
     public function export(Request $request)
