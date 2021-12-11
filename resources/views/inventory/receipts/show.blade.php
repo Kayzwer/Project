@@ -23,7 +23,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: At the end of this receipt you will not be able to load more products in it.') ? window.location.replace('{{ route('receipts.finalize', $receipt) }}') : ''">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: At the end of this receipt you will not be able to load more products in it.\n\nPlease check the details @foreach ($receipt->products as $received_product) \nCategory: {{ $received_product->product->category->name }}\nProduct: {{ $received_product->product->name }}\nStock: {{ $received_product->stock }}\nDefective stock: {{ $received_product->stock_defective }}\n @endforeach') ? window.location.replace('{{ route('receipts.finalize', $receipt) }}') : ''">
                                         Finalize Receipt
                                     </button>
                                 @endif

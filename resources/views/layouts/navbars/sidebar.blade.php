@@ -86,7 +86,7 @@
                         <li @if ($pageSlug == 'categories') class="active " @endif>
                             <a href="{{ route('categories.index') }}">
                                 <i class="tim-icons icon-tag"></i>
-                                <p>Categoríes</p>
+                                <p>Categories</p>
                             </a>
                         </li>
                         <li @if ($pageSlug == 'receipts') class="active " @endif>
@@ -116,37 +116,9 @@
             <li @if ($pageSlug == 'methods') class="active " @endif>
                 <a href="{{ route('methods.index') }}">
                     <i class="tim-icons icon-wallet-43"></i>
-                    <p>Methods and Accounts</p>
+                    <p>Payment Methods</p>
                 </a>
             </li>
-
-
-            <!-- <li>
-                <a data-toggle="collapse" href="#clients">
-                    <i class="tim-icons icon-single-02" ></i>
-                    <span class="nav-link-text">Clients</span>
-                    <b class="caret mt-1"></b>
-                </a>
-
-                <div class="collapse" id="clients">
-                    <ul class="nav pl-4">
-                        <li @if ($pageSlug == 'clients-list') class="active " @endif>
-                            <a href="{{ route('clients.index')  }}">
-                                <i class="tim-icons icon-notes"></i>
-                                <p>Administrar Clients</p>
-                            </a>
-                        </li>
-                        <li @if ($pageSlug == 'clients-create') class="active " @endif>
-                            <a href="{{ route('clients.create')  }}">
-                                <i class="tim-icons icon-simple-add"></i>
-                                <p>New Client</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li> -->
-
-
             <li>
                 <a data-toggle="collapse" href="#users" {{ $section == 'users' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-badge" ></i>

@@ -22,7 +22,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: The transactions of this sale do not seem to coincide with the cost of the products, do you want to finalize it? Your records cannot be modified from now on.') ? window.location.replace('{{ route('sales.finalize', $sale) }}') : ''">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: At the end of this sale you will not be able to load more products in it.\n\nPlease check the details @foreach ($sale->products as $sold_product)\nCategory: {{ $sold_product->product->category->name }}\nProduct: {{ $sold_product->product->name }}\nQuantity: {{ $sold_product->qty }}\nPrice: {{ format_money($sold_product->price) }}\n @endforeach') ? window.location.replace('{{ route('sales.finalize', $sale) }}') : ''">
                                         Finalize Sale
                                     </button>
                                 @endif
