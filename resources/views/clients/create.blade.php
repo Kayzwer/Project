@@ -25,25 +25,10 @@
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Name" value="{{ old('name') }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'name'])
                                 </div>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <label class="form-control-label" for="input-document_type">Type</label>
-                                        <select name="document_type" id="input-document_type" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" required>
-                                            @foreach (['V', 'E', 'P', 'RIF'] as $document_type)
-                                                @if($document_type == old('document_type'))
-                                                    <option value="{{$document_type}}" selected>{{$document_type}}</option>
-                                                @else
-                                                    <option value="{{$document_type}}">{{$document_type}}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-control-label" for="input-document_id">Document Number</label>
-                                        <input type="number" name="document_id" id="input-document_id" class="form-control form-control-alternative{{ $errors->has('document_id') ? ' is-invalid' : '' }}" placeholder="Document Number" value="{{ old('document_id') }}" required>
-                                        @include('alerts.feedback', ['field' => 'document_id'])
-
-                                    </div>
+                                <div class="form-group{{ $errors->has('document_id') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-document_id">Document Number</label>
+                                    <input type="number" name="document_id" id="input-document_id" class="form-control form-control-alternative{{ $errors->has('document_id') ? ' is-invalid' : '' }}" placeholder="Document Number" value="{{ old('document_id') }}" required>
+                                    @include('alerts.feedback', ['field' => 'document_id'])
                                 </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">Email</label>
@@ -55,8 +40,6 @@
                                     <input type="text" name="phone" id="input-phone" class="form-control form-control-alternative{{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="Telephone" value="{{ old('phone') }}" required>
                                     @include('alerts.feedback', ['field' => 'phone'])
                                 </div>
-
-
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">Save</button>
                                 </div>

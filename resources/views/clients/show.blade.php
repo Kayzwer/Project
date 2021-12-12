@@ -25,7 +25,7 @@
                             <tr>
                                 <td>{{ $client->id }}</td>
                                 <td>{{ $client->name }}</td>
-                                <td>{{ $client->document_type }}-{{ $client->document_id }}</td>
+                                <td>{{ $client->document_id }}</td>
                                 <td>{{ $client->phone }}</td>
                                 <td>{{ $client->email }}</td>
                                 <td>

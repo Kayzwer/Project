@@ -21,7 +21,7 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th>Name</th>
+                                <th>Name / Document ID</th>
                                 <th>Email / Telephone</th>
                                 <th>Balance</th>
                                 <th>Purchases</th>
@@ -32,7 +32,7 @@
                             <tbody>
                                 @foreach ($clients as $client)
                                     <tr>
-                                        <td>{{ $client->name }}<br>{{ $client->document_type }}-{{ $client->document_id }}</td>
+                                        <td>{{ $client->name }}<br>{{ $client->document_id }}</td>
                                         <td>
                                             <a href="mailto:{{ $client->email }}">{{ $client->email }}</a>
                                             <br>

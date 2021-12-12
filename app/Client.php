@@ -10,7 +10,7 @@ class Client extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'email', 'phone', 'document_type', 'document_id'
+        'name', 'email', 'phone', 'document_id'
     ];
 
     public function sales()
