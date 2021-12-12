@@ -75,7 +75,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">products: {{ $receipt->products->count() }}</h4>
+                            <h4 class="card-title">Products: {{ $receipt->products->count() }}</h4>
                         </div>
                         @if (!$receipt->finalized_at)
                             <div class="col-4 text-right">

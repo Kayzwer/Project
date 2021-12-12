@@ -44,7 +44,7 @@
 
                                 <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-amount">Amount</label>
-                                    <input type="number" step=".01" name="amount" id="input-amount" class="form-control form-control-alternative" placeholder="Amount" value="{{ old('amount', abs($transaction->amount)) }}" min="0" required>
+                                    <input type="number" step=".01" name="amount" id="input-amount" class="form-control form-control-alternative" placeholder="Amount" value="{{ old('amount', $transaction->amount) }}" required>
                                     @include('alerts.feedback', ['field' => 'amount'])
                                 </div>
 
