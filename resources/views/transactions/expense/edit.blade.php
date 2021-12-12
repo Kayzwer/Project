@@ -28,7 +28,6 @@
                                     <input type="text" name="title" id="input-title" class="form-control form-control-alternative{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('Title') }}" value="{{ old('title', $transaction->title) }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'title'])
                                 </div>
-
                                 <div class="form-group{{ $errors->has('payment_method_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-method">Categories</label>
                                     <select name="payment_method_id" id="input-method" class="form-select form-control-alternative{{ $errors->has('payment_method_id') ? ' is-invalid' : '' }}" required>
@@ -54,8 +53,6 @@
                                     <input type="text" name="reference" id="input-reference" class="form-control form-control-alternative{{ $errors->has('reference') ? ' is-invalid' : '' }}" placeholder="Reference" value="{{ old('reference', $transaction->reference) }}">
                                     @include('alerts.feedback', ['field' => 'reference'])
                                 </div>
-
-
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">Save</button>
                                 </div>

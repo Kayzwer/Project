@@ -34,7 +34,7 @@
                                         <td> {{ date('d-m-y', strtotime($transaction->created_at)) }}</td>
                                         <td> {{ $transaction->title }}</td>
                                         <td><a href="{{ route('methods.show', $transaction->method) }}">{{ $transaction->method->name }}</a></td>
-                                        <td>{{ format_money($transaction->amount) }}</td>
+                                        <td>{{ format_money(abs($transaction->amount)) }}</td>
                                         <td>{{ $transaction->reference }}</td>
                                         <td class="td-actions text-right">
                                             @if ($transaction->sale_id)
