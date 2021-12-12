@@ -52,7 +52,7 @@
                                     </td>
                                     <td class="td-actions text-right">
                                         @if($receipt->finalized_at)
-                                            <a href="{{ route('receipts.show', ['receipt' => $receipt]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Ver Receipt">
+                                            <a href="{{ route('receipts.show', ['receipt' => $receipt]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="View Receipt">
                                                 <i class="tim-icons icon-zoom-split"></i>
                                             </a>
                                         @else
