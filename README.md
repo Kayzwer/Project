@@ -1,1 +1,1 @@
-The current system github page: https://github.com/sanz/laravel-inventory
+The original system github page: https://github.com/sanz/laravel-inventory
