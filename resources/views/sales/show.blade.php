@@ -66,11 +66,16 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">products: {{ $sale->products->sum('qty') }}</h4>
+                            <h4 class="card-title">Number of products: {{ $sale->products->sum('qty') }}</h4>
                         </div>
                         @if (!$sale->finalized_at)
                             <div class="col-4 text-right">
                                 <a href="{{ route('sales.product.add', ['sale' => $sale->id]) }}" class="btn btn-sm btn-primary">Add</a>
+                            </div>
+                        @endif
+                        @if ($sale->client->balance < 0)
+                            <div class="col-4 text-right">
+                                <a href="{{ route('clients.transactions.add', $sale->client) }}" class="btn btn-sm btn-primary">To transaction</a>
                             </div>
                         @endif
                     </div>
