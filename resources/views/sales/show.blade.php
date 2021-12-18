@@ -99,7 +99,7 @@
                                     <td><a href="{{ route('products.show', $sold_product->product) }}">{{ $sold_product->product->name }}</a></td>
                                     <td>{{ $sold_product->qty }}</td>
                                     <td>{{ format_money($sold_product->price) }}</td>
-                                    <td>{{ format_money($sold_product->total_amount) }}</td>
+                                    <td><span class="text-success">{{ format_money($sold_product->total_amount) }}</span></td>
                                     <td class="td-actions text-right">
                                         @if(!$sale->finalized_at)
                                             <a href="{{ route('sales.product.edit', ['sale' => $sale, 'soldproduct' => $sold_product]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Pedido">

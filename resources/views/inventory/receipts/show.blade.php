@@ -82,10 +82,10 @@
                                 <a href="{{ route('receipts.product.add', ['receipt' => $receipt]) }}" class="btn btn-sm btn-primary">Add</a>
                             </div>
                         @endif
-                        @if ($receipt->provider->transactions->count() < $receipt->provider->count())
-                        <div class="col-4 text-right">
+                        @if ($receipt->provider->transactions->count() < $receipt->count())
+                            <div class="col-4 text-right">
                                 <a href="{{ route('transactions.create', 'payment') }}" class="btn btn-sm btn-primary">To payment</a>
-                        </div>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                                     <td>{{ $received_product->stock_defective }}</td>
                                     <td>{{ $received_product->stock + $received_product->stock_defective }}</td>
                                     <td>{{ $received_product->product->price }}</td>
-                                    <td>{{ format_money($received_product->product->price * ($received_product->stock + $received_product->stock_defective)) }}</td>
+                                    <td><span class="text-danger">{{ format_money($received_product->product->price * ($received_product->stock + $received_product->stock_defective)) }}</span></td>
                                     <td class="td-actions text-right">
                                         @if(!$receipt->finalized_at)
                                             <a href="{{ route('receipts.product.edit', ['receipt' => $receipt, 'receivedproduct' => $received_product]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Pedido">
