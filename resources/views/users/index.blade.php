@@ -44,13 +44,13 @@
                                                                 @csrf
                                                                 @method('delete')
 
-                                                                <a class="dropdown-item" href="{{ route('users.edit', $user) }}">{{ __('Edit') }}</a>
-                                                                <button type="button" class="dropdown-item" onclick="confirm('{{ __('Are you sure you want to delete this user?') }}') ? this.parentElement.submit() : ''">
+                                                                <a class="dropdown-item" href="{{ route('users.edit', $user) }}" style="font-weight: bold; color: blue;">{{ __('Edit') }}</a>
+                                                                <button type="button" class="dropdown-item" onclick="confirm('{{ __('Are you sure you want to delete this user?') }}\n\nPlease check the details\nName: {{ $user->name }}\nEmail: {{ $user->email }}') ? this.parentElement.submit() : ''" style="font-weight: bold; color: red;">
                                                                             {{ __('Delete') }}
                                                                 </button>
                                                             </form>
                                                         @else
-                                                            <a class="dropdown-item" href="{{ route('profile.edit', $user->id) }}">{{ __('Edit') }}</a>
+                                                            <a class="dropdown-item" href="{{ route('profile.edit', $user->id) }}" style="font-weight: bold; color: blue;">{{ __('Edit') }}</a>
                                                         @endif
                                                     </div>
                                                 </div>
