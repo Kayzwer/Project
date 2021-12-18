@@ -75,12 +75,17 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Products: {{ $receipt->products->count() }}</h4>
+                            <h4 class="card-title">Number of products: {{ $receipt->products->count() }}</h4>
                         </div>
                         @if (!$receipt->finalized_at)
                             <div class="col-4 text-right">
                                 <a href="{{ route('receipts.product.add', ['receipt' => $receipt]) }}" class="btn btn-sm btn-primary">Add</a>
                             </div>
+                        @endif
+                        @if ($receipt->provider->transactions->count() < $receipt->provider->count())
+                        <div class="col-4 text-right">
+                                <a href="{{ route('transactions.create', 'payment') }}" class="btn btn-sm btn-primary">To payment</a>
+                        </div>
                         @endif
                     </div>
                 </div>
@@ -92,7 +97,8 @@
                             <th>Stock</th>
                             <th>Defective Stock</th>
                             <th>Total Stock</th>
-                            <th></th>
+                            <th>Price C/U</th>
+                            <th>Total</th>
                         </thead>
                         <tbody>
                             @foreach ($receipt->products as $received_product)
@@ -102,6 +108,8 @@
                                     <td>{{ $received_product->stock }}</td>
                                     <td>{{ $received_product->stock_defective }}</td>
                                     <td>{{ $received_product->stock + $received_product->stock_defective }}</td>
+                                    <td>{{ $received_product->product->price }}</td>
+                                    <td>{{ format_money($received_product->product->price * ($received_product->stock + $received_product->stock_defective)) }}</td>
                                     <td class="td-actions text-right">
                                         @if(!$receipt->finalized_at)
                                             <a href="{{ route('receipts.product.edit', ['receipt' => $receipt, 'receivedproduct' => $received_product]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Pedido">

@@ -33,7 +33,6 @@
                                 <div class="form-group{{ $errors->has('client_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-provider">Provider</label>
                                     <select name="provider_id" id="input-provider" class="form-select form-control-alternative{{ $errors->has('client') ? ' is-invalid' : '' }}">
-                                        <option value="">Not Specified</option>
                                         @foreach ($providers as $provider)
                                             @if($provider['id'] == old('provider_id'))
                                                 <option value="{{$provider['id']}}" selected>{{$provider['name']}}</option>
