@@ -145,11 +145,11 @@ demo = {
         };
 
         // Incomes Chart
-        var ctx = document.getElementById("chartLinePurple").getContext("2d");
+        var ctx = document.getElementById("chartLineGreen").getContext("2d");
         var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-        gradientStroke.addColorStop(1, 'rgba(72,72,176,0.2)');
-        gradientStroke.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
+        gradientStroke.addColorStop(1, 'rgb(66,242,121,0.15)');
+        gradientStroke.addColorStop(0.2, 'rgb(66,242,121, 0.0)');
+        gradientStroke.addColorStop(0, 'rgb(40, 167, 69)'); //green colors
 
         var data = {
             labels: lastmonths,
@@ -157,13 +157,13 @@ demo = {
                 label: "Total",
                 fill: true,
                 backgroundColor: gradientStroke,
-                borderColor: '#d048b6',
+                borderColor: '#28a745',
                 borderWidth: 2,
                 borderDash: [],
                 borderDashOffset: 0.0,
-                pointBackgroundColor: '#d048b6',
+                pointBackgroundColor: '#28a745',
                 pointBorderColor: 'rgba(255,255,255,0)',
-                pointHoverBackgroundColor: '#d048b6',
+                pointHoverBackgroundColor: '#28a745',
                 pointBorderWidth: 20,
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 15,
@@ -175,16 +175,16 @@ demo = {
         var incomesChart = new Chart(ctx, {
             type: 'line',
             data: data,
-            options: gradientChartOptionsConfigurationWithTooltipPurple
+            options: gradientChartOptionsConfigurationWithTooltipGreen
         });
 
 
         // Expenses Chart
-        var ctxGreen = document.getElementById("chartLineGreen").getContext("2d");
+        var ctxGreen = document.getElementById("chartLineRed").getContext("2d");
         var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-        gradientStroke.addColorStop(1, 'rgba(66,134,121,0.15)');
-        gradientStroke.addColorStop(0.4, 'rgba(66,134,121,0.0)'); //green colors
-        gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); //green colors
+        gradientStroke.addColorStop(1, 'rgba(242,134,121,0.15)');
+        gradientStroke.addColorStop(0.4, 'rgba(242,134,121,0.0)'); 
+        gradientStroke.addColorStop(0, 'rgb(220, 53, 69)'); //red colors
 
         var data = {
             labels: lastmonths,
@@ -192,13 +192,13 @@ demo = {
                 label: "Total",
                 fill: true,
                 backgroundColor: gradientStroke,
-                borderColor: '#00d6b4',
+                borderColor: '#dc3545',
                 borderWidth: 2,
                 borderDash: [],
                 borderDashOffset: 0.0,
-                pointBackgroundColor: '#00d6b4',
+                pointBackgroundColor: '#dc3545',
                 pointBorderColor: 'rgba(255,255,255,0)',
-                pointHoverBackgroundColor: '#00d6b4',
+                pointHoverBackgroundColor: '#dc3545',
                 pointBorderWidth: 20,
                 pointHoverRadius: 4,
                 pointHoverBorderWidth: 15,
@@ -210,7 +210,7 @@ demo = {
         var expensesChart = new Chart(ctxGreen, {
             type: 'line',
             data: data,
-            options: gradientChartOptionsConfigurationWithTooltipGreen
+            options: gradientChartOptionsConfigurationWithTooltipPurple
         });
 
         // Anual Performance Chart

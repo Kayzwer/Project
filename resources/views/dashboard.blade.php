@@ -55,7 +55,7 @@
                 </div>
                 <div class="card-body">
                     <div class="chart-area">
-                        <canvas id="chartLinePurple"></canvas>
+                        <canvas id="chartLineGreen"></canvas>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="card-body">
                     <div class="chart-area">
-                        <canvas id="chartLineGreen"></canvas>
+                        <canvas id="chartLineRed"></canvas>
                     </div>
                 </div>
             </div>
