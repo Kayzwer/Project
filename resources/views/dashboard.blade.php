@@ -106,24 +106,12 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>
-                                        Date
-                                    </th>
-                                    <th>
-                                        Client
-                                    </th>
-                                    <th>
-                                        Products
-                                    </th>
-                                    <th>
-                                        Paid out
-                                    </th>
-                                    <th>
-                                        Total
-                                    </th>
-                                    <th>
-
-                                    </th>
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Products</th>
+                                    <th>Paid out</th>
+                                    <th>Total</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>

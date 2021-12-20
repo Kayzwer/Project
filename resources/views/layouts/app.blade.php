@@ -19,7 +19,7 @@
         <link href="{{ asset('assets') }}/css/white-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('assets') }}/css/theme.css" rel="stylesheet" />
     </head>
-    <body class="white-content {{ $class ?? '' }}">
+    <body class="black-content {{ $class ?? '' }}">
         @auth()
             <div class="wrapper">
                     @include('layouts.navbars.sidebar')
