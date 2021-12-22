@@ -102,7 +102,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                @if(count($unfinishedsales) > 0)
                     <div class="table-full-width table-responsive">
+                @else
+                    <div class="table-full-width">
+                @endif
                         <table class="table">
                             <thead>
                                 <tr>
@@ -150,7 +154,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                @if(count($lasttransactions) > 0)
                     <div class="table-full-width table-responsive">
+                @else
+                    <div class="table-full-width">
+                @endif
                         <table class="table">
                             <thead>
                                 <tr>

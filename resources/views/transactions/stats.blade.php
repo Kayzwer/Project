@@ -74,7 +74,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                @if(count($clients) > 0)
                     <div class="table-full-width table-responsive">
+                @else
+                    <div class="table-full-width">
+                @endif
                         <table class="table">
                             <thead>
                                 <th>Client</th>
@@ -128,7 +132,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                @if(count($methods) > 0)
                     <div class="table-full-width table-responsive">
+                @else
+                    <div class="table-full-width">
+                @endif
                         <table class="table">
                             <thead>
                                 <th>Method</th>

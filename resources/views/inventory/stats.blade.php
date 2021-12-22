@@ -49,7 +49,11 @@
                     <h4 class="card-title">Statistics by Income (TOP 15)</h4>
                 </div>
                 <div class="card-body">
+                @if(count($soldproductsbyincomes) > 0)
                     <div class="table-full-width table-responsive">
+                @else
+                    <div class="table-full-width">
+                @endif
                         <table class="table">
                             <thead>
                                 <th>ID</th>
@@ -80,7 +84,11 @@
                     <h4 class="card-title">Statistics by Average Price (TOP 15)</h4>
                 </div>
                 <div class="card-body">
+                @if(count($soldproductsbyavgprice) > 0)
                     <div class="table-full-width table-responsive">
+                @else
+                    <div class="table-full-width">
+                @endif
                         <table class="table">
                             <thead>
                                 <th>ID</th>
