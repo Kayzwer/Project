@@ -38,8 +38,8 @@
                                     <td><a href="{{ route('methods.show', $transfer->sender_method) }}">{{ $transfer->sender_method->name }}</a></td>
                                     <td><a href="{{ route('methods.show', $transfer->receiver_method) }}">{{ $transfer->receiver_method->name }}</a></td>
                                     <td>{{ $transfer->reference }}</td>
-                                    <td>${{ $transfer->sended_amount }}</td>
-                                    <td>${{ $transfer->received_amount }}</td>
+                                    <td><span class="text-danger">${{ $transfer->sended_amount }}</span></td>
+                                    <td><span class="text-success">${{ $transfer->received_amount }}</span></td>
                                     <td class="td-actions text-right">
                                         <form action="{{ route('transfer.destroy', $transfer) }}" method="post" class="d-inline">
                                             @csrf
