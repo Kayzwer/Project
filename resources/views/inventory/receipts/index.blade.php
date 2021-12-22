@@ -45,9 +45,9 @@
                                     <td>{{ $receipt->products->sum('stock_defective') }}</td>
                                     <td>
                                         @if($receipt->finalized_at)
-                                            FINALIZED
+                                            <span class="text-success">FINALIZED</span>
                                         @else
-                                            <span style="color:red; font-weight:bold;">TO FINALIZE</span>
+                                            <span class="text-danger">TO FINALIZE</span>
                                         @endif
                                     </td>
                                     <td class="td-actions text-right">

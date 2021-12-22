@@ -183,7 +183,7 @@ demo = {
         var ctxGreen = document.getElementById("chartLineRed").getContext("2d");
         var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
         gradientStroke.addColorStop(1, 'rgba(242,134,121,0.15)');
-        gradientStroke.addColorStop(0.4, 'rgba(242,134,121,0.0)'); 
+        gradientStroke.addColorStop(0.2, 'rgba(242,134,121,0.0)'); 
         gradientStroke.addColorStop(0, 'rgb(220, 53, 69)'); //red colors
 
         var data = {

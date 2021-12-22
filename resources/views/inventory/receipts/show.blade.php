@@ -60,7 +60,7 @@
                                 <td>{{ $receipt->products->count() }}</td>
                                 <td>{{ $receipt->products->sum('stock') }}</td>
                                 <td>{{ $receipt->products->sum('stock_defective') }}</td>
-                                <td>{!! $receipt->finalized_at ? 'Finalized' : '<span style="color:red; font-weight:bold;">TO FINALIZE</span>' !!}</td>
+                                <td>{!! $receipt->finalized_at ? '<span class="text-success">Finalized</span>' : '<span class="text-danger">TO FINALIZE</span>' !!}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -81,8 +81,7 @@
                             <div class="col-4 text-right">
                                 <a href="{{ route('receipts.product.add', ['receipt' => $receipt]) }}" class="btn btn-sm btn-primary">Add</a>
                             </div>
-                        @endif
-                        @if ($receipt->provider->transactions->count() < $receipt->count())
+                        @else
                             <div class="col-4 text-right">
                                 <a href="{{ route('transactions.create', 'payment') }}" class="btn btn-sm btn-primary">To payment</a>
                             </div>
