@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper" style="background-color: rgb(26, 26, 26, 80%);">
         <ul class="nav">
             <li @if ($pageSlug == 'dashboard') class="active " @endif>
                 <a href="{{ route('home') }}">
