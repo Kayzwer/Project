@@ -51,7 +51,7 @@
             <div class="card card-chart">
                 <div class="card-header">
                     <h5 class="card-category">Last Month Income</h5>
-                    <h3 class="card-title"><i class="tim-icons icon-money-coins text-primary"></i>{{ format_money($semesterincomes) }}</h3>
+                    <h3 class="card-title"><i class="tim-icons icon-money-coins text-success"></i>{{ format_money($semesterincomes) }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="chart-area">
@@ -77,7 +77,7 @@
             <div class="card card-chart">
                 <div class="card-header">
                     <h5 class="card-category">Expenditures Last Month</h5>
-                    <h3 class="card-title"><i class="tim-icons icon-paper text-success"></i> {{ format_money($semesterexpenses) }}</h3>
+                    <h3 class="card-title"><i class="tim-icons icon-paper text-danger"></i> {{ format_money($semesterexpenses) }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="chart-area">
