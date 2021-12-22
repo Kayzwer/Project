@@ -117,7 +117,7 @@
                                             <form action="{{ route('receipts.product.destroy', ['receipt' => $receipt, 'receivedproduct' => $received_product]) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Pedido" onclick="confirm('Estás seguro que quieres eliminar este producto?') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Pedido" onclick="confirm('Are you sure you want to remove this product?\n\nPlease check the details\nProduct: {{ $received_product->product->name }}\nTotal Stock: {{ $received_product->stock + $received_product->stock_defective }}\nPrice: {{ $received_product->product->price }}') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>
@@ -125,6 +125,20 @@
                                     </td>
                                 </tr>
                             @endforeach
+                                <tr>
+                                    @php
+                                        $total = 0;
+                                        foreach ($receipt->products as $received_product)
+                                            $total += $received_product->product->price * ($received_product->stock + $received_product->stock_defective);
+                                    @endphp
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total:</td>
+                                    <td><span class="text-danger">{{ format_money($total) }}</span></td> 
+                                </tr>
                         </tbody>
                     </table>
                 </div>

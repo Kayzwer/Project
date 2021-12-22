@@ -116,6 +116,20 @@
                                     </td>
                                 </tr>
                             @endforeach
+                                <tr>
+                                    @php
+                                        $total = 0;
+                                        foreach ($sale->products as $sold_product)
+                                            $total += $sold_product->total_amount;
+                                    @endphp
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total:</td>
+                                    <td><span class="text-success">{{ format_money($total) }}</span></td>
+                                    <td></td>
+                                </tr>
                         </tbody>
                     </table>
                 </div>
