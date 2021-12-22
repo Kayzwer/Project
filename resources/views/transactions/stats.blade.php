@@ -33,11 +33,23 @@
                                     <tr>
                                         <td>{{ $period }}</td>
                                         <td>{{ $data->count() }}</td>
-                                        <td>{{ format_money($data->where('type', 'income')->sum('amount')) }}</td>
-                                        <td>{{ format_money($data->where('type', 'expense')->sum('amount')) }}</td>
-                                        <td>{{ format_money($data->where('type', 'payment')->sum('amount')) }}</td>
-                                        <td>{{ format_money($data->where('payment_method_id', optional($methods->where('name', 'Cash')->first())->id)->sum('amount')) }}</td>
-                                        <td>{{ format_money($data->sum('amount')) }}</td>
+                                        <td><span class="text-success">{{ format_money($data->where('type', 'income')->sum('amount')) }}</span></td>
+                                        <td><span class="text-danger">{{ format_money($data->where('type', 'expense')->sum('amount')) }}</span></td>
+                                        <td><span class="text-danger">{{ format_money($data->where('type', 'payment')->sum('amount')) }}</span></td>
+                                        <td>
+                                            @if($data->where('payment_method_id', optional($methods->where('name', 'Cash')->first())->id)->sum('amount') >= 0)
+                                                <span class="text-success">{{ format_money($data->where('payment_method_id', optional($methods->where('name', 'Cash')->first())->id)->sum('amount')) }}</span>
+                                            @else
+                                                <span class="text-danger">{{ format_money($data->where('payment_method_id', optional($methods->where('name', 'Cash')->first())->id)->sum('amount')) }}</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($data->sum('amount') >= 0)
+                                                <span class="text-success">{{ format_money($data->sum('amount')) }}</span>
+                                            @else
+                                                <span class="text-danger">{{ format_money($data->sum('amount')) }}</span>
+                                            @endif
+                                        </td>
                                         <td></td>
                                     </tr>
                                 @endforeach
