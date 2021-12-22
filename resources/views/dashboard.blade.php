@@ -180,11 +180,7 @@
                                         <td>{{ $transaction->title }}</td>
                                         <td>{{ $transaction->method->name }}</td>
                                         <td>
-                                            @if($transaction->amount >= 0)
-                                                <span class="text-success">{{ format_money($transaction->amount) }}</span>
-                                            @else
-                                                <span class="text-danger">{{ format_money($transaction->amount) }}</span>
-                                            @endif
+                                            <span class="@if($transaction->amount >= 0) text-success @else text-danger @endif">{{ format_money($transaction->amount) }}</span>
                                         </td>
                                         <td class="td-actions text-right">
                                             @if ($transaction->sale_id)
