@@ -36,7 +36,7 @@
                                         <td><a href="{{ route('providers.show', $transaction->provider) }}">{{ $transaction->provider->name }}</a></td>
                                         <td> {{ $transaction->title }}</td>
                                         <td><a href="{{ route('methods.show', $transaction->method) }}">{{ $transaction->method->name }}</a></td>
-                                        <td>{{ format_money($transaction->amount) }}</td>
+                                        <td><span class="text-danger">{{ format_money($transaction->amount) }}</span></td>
                                         <td>{{ $transaction->reference }}</td>
                                         <td></td>
                                         <td class="td-actions text-right">

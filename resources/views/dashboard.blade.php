@@ -154,25 +154,14 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>
-                                        Category
-                                    </th>
-                                    <th>
-                                        Title
-                                    </th>
-                                    <th>
-                                        Medium
-                                    </th>
-                                    <th>
-                                        Total
-                                    </th>
-                                    <th>
-
-                                    </th>
+                                    <th>Category</th>
+                                    <th>Title</th>
+                                    <th>Medium</th>
+                                    <th>Total</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach($lasttransactions as $transaction)
                                     <tr> 
                                         <td>
@@ -186,12 +175,17 @@
                                                 Income
                                             @else
                                                 {{ $transaction->type }}
-                                            @endif
-                                            
+                                            @endif         
                                         </td>
                                         <td>{{ $transaction->title }}</td>
                                         <td>{{ $transaction->method->name }}</td>
-                                        <td>{{ format_money($transaction->amount) }}</td>
+                                        <td>
+                                            @if($transaction->amount >= 0)
+                                                <span class="text-success">{{ format_money($transaction->amount) }}</span>
+                                            @else
+                                                <span class="text-danger">{{ format_money($transaction->amount) }}</span>
+                                            @endif
+                                        </td>
                                         <td class="td-actions text-right">
                                             @if ($transaction->sale_id)
                                                 <a href="{{ route('sales.show', $transaction->sale_id) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More details">

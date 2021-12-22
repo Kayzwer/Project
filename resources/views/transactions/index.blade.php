@@ -43,7 +43,13 @@
                                         </td>
                                         <td style="max-width:150px">{{ $transaction->title }}</td>
                                         <td><a href="{{ route('methods.show', $transaction->method) }}">{{ $transaction->method->name }}</a></td>
-                                        <td>{{ format_money($transaction->amount) }}</td>
+                                        <td>
+                                            @if ($transaction->amount >= 0)
+                                                <span class="text-success">{{ format_money($transaction->amount) }}</span>
+                                            @else
+                                                <span class="text-danger">{{ format_money($transaction->amount) }}</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $transaction->reference }}</td>
                                         <td>
                                             @if ($transaction->client)
