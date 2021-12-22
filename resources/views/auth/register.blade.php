@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-7 ml-auto mr-auto">
-            <div class="card card-register card-white">
+            <div class="card card-register card-black">
                 <div class="card-header">
                     <!-- <img class="card-img" src="{{ asset('assets') }}/img/card-primary.png" alt="Card image"> -->
                     <h4 class="card-title" style="padding-left: 10px; color: blue;" align="center">Register</h4>
