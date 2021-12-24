@@ -3,6 +3,11 @@
 @section('content')
     @include('alerts.success')
     @include('alerts.error')
+    @php
+        $total = 0;
+        foreach ($sale->products as $sold_product)
+            $total += $sold_product->total_amount;
+    @endphp
     <div class="row">
         <div class="col-md-12">
             <div class="card ">
@@ -22,7 +27,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: At the end of this sale you will not be able to load more products in it.\n\nPlease check the details @foreach ($sale->products as $sold_product)\nCategory: {{ $sold_product->product->category->name }}\nProduct: {{ $sold_product->product->name }}\nQuantity: {{ $sold_product->qty }}\nPrice: {{ format_money($sold_product->price) }}\n @endforeach') ? window.location.replace('{{ route('sales.finalize', $sale) }}') : ''">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: At the end of this sale you will not be able to load more products in it.\n\nPlease check the details @foreach ($sale->products as $sold_product)\nCategory: {{ $sold_product->product->category->name }}\nProduct: {{ $sold_product->product->name }}\nQuantity: {{ $sold_product->qty }}\nPrice: {{ format_money($sold_product->price) }}\nSubtotal: {{ format_money($sold_product->qty * $sold_product->price) }}\n @endforeach \nTotal: {{ format_money($total) }}') ? window.location.replace('{{ route('sales.finalize', $sale) }}') : ''">
                                         Finalize Sale
                                     </button>
                                 @endif
@@ -72,8 +77,7 @@
                             <div class="col-4 text-right">
                                 <a href="{{ route('sales.product.add', ['sale' => $sale->id]) }}" class="btn btn-sm btn-primary">Add</a>
                             </div>
-                        @endif
-                        @if ($sale->client->balance < 0)
+                        @elseif($sale->client->balance < 0)
                             <div class="col-4 text-right">
                                 <a href="{{ route('clients.transactions.add', $sale->client) }}" class="btn btn-sm btn-primary">To transaction</a>
                             </div>
@@ -117,11 +121,6 @@
                                 </tr>
                             @endforeach
                                 <tr>
-                                    @php
-                                        $total = 0;
-                                        foreach ($sale->products as $sold_product)
-                                            $total += $sold_product->total_amount;
-                                    @endphp
                                     <td></td>
                                     <td></td>
                                     <td></td>

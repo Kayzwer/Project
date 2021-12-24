@@ -4,6 +4,11 @@
 @section('content')
     @include('alerts.success')
     @include('alerts.error')
+    @php
+        $total = 0;
+        foreach ($receipt->products as $received_product)
+            $total += $received_product->product->price * ($received_product->stock + $received_product->stock_defective);
+    @endphp
     <div class="row">
         <div class="col-md-12">
             <div class="card ">
@@ -23,7 +28,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: At the end of this receipt you will not be able to load more products in it.\n\nPlease check the details @foreach ($receipt->products as $received_product) \nCategory: {{ $received_product->product->category->name }}\nProduct: {{ $received_product->product->name }}\nStock: {{ $received_product->stock }}\nDefective stock: {{ $received_product->stock_defective }}\n @endforeach') ? window.location.replace('{{ route('receipts.finalize', $receipt) }}') : ''">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: At the end of this receipt you will not be able to load more products in it.\n\nPlease check the details @foreach ($receipt->products as $received_product) \nCategory: {{ $received_product->product->category->name }}\nProduct: {{ $received_product->product->name }}\nStock: {{ $received_product->stock }}\nDefective stock: {{ $received_product->stock_defective }}\nPrice: {{ format_money($received_product->product->price) }}\nSubtotal: {{ format_money(($received_product->stock + $received_product->stock_defective) * $received_product->product->price) }}\n @endforeach \nTotal: {{ format_money($total) }}') ? window.location.replace('{{ route('receipts.finalize', $receipt) }}') : ''">
                                         Finalize Receipt
                                     </button>
                                 @endif
@@ -111,13 +116,13 @@
                                     <td><span class="text-danger">{{ format_money($received_product->product->price * ($received_product->stock + $received_product->stock_defective)) }}</span></td>
                                     <td class="td-actions text-right">
                                         @if(!$receipt->finalized_at)
-                                            <a href="{{ route('receipts.product.edit', ['receipt' => $receipt, 'receivedproduct' => $received_product]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Pedido">
+                                            <a href="{{ route('receipts.product.edit', ['receipt' => $receipt, 'receivedproduct' => $received_product]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Product">
                                                 <i class="tim-icons icon-pencil"></i>
                                             </a>
                                             <form action="{{ route('receipts.product.destroy', ['receipt' => $receipt, 'receivedproduct' => $received_product]) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Pedido" onclick="confirm('Are you sure you want to remove this product?\n\nPlease check the details\nProduct: {{ $received_product->product->name }}\nTotal Stock: {{ $received_product->stock + $received_product->stock_defective }}\nPrice: {{ $received_product->product->price }}') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Product" onclick="confirm('Are you sure you want to remove this product?\n\nPlease check the details\nProduct: {{ $received_product->product->name }}\nTotal Stock: {{ $received_product->stock + $received_product->stock_defective }}\nPrice: {{ $received_product->product->price }}') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>
@@ -126,11 +131,6 @@
                                 </tr>
                             @endforeach
                                 <tr>
-                                    @php
-                                        $total = 0;
-                                        foreach ($receipt->products as $received_product)
-                                            $total += $received_product->product->price * ($received_product->stock + $received_product->stock_defective);
-                                    @endphp
                                     <td></td>
                                     <td></td>
                                     <td></td>

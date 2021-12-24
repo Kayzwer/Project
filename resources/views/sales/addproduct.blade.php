@@ -26,6 +26,8 @@
                                         @foreach ($products as $product)
                                             @if($product['id'] == old('product_id'))
                                                 <option value="{{$product['id']}}" selected>[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ $product->price }}$ - Stock: {{ $product->stock }}</option>
+                                            @elseif($product->stock == 0)
+                                                <option class="ss-option ss-disabled" value="{{$product['id']}}">[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ $product->price }}$ - Stock: {{ $product->stock }}</option>
                                             @else
                                                 <option value="{{$product['id']}}">[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ $product->price }}$ - Stock: {{ $product->stock }}</option>
                                             @endif
