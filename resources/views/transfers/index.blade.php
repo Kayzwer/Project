@@ -35,8 +35,8 @@
                                 <tr>
                                     <td>{{ date('d-m-y', strtotime($transfer->created_at)) }}</td>
                                     <td style="max-width:150px">{{ $transfer->title }}</td>
-                                    <td><a href="{{ route('methods.show', $transfer->sender_method) }}">{{ $transfer->sender_method->name }}</a></td>
-                                    <td><a href="{{ route('methods.show', $transfer->receiver_method) }}">{{ $transfer->receiver_method->name }}</a></td>
+                                    <td><a href="{{ route('methods.show', $transfer->sender_method) }}" style="color: white; font-weight: bold;">{{ $transfer->sender_method->name }}</a></td>
+                                    <td><a href="{{ route('methods.show', $transfer->receiver_method) }}" style="color: white; font-weight: bold;">{{ $transfer->receiver_method->name }}</a></td>
                                     <td>{{ $transfer->reference }}</td>
                                     <td><span class="text-danger">${{ $transfer->sended_amount }}</span></td>
                                     <td><span class="text-success">${{ $transfer->received_amount }}</span></td>

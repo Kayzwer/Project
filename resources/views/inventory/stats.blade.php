@@ -22,13 +22,13 @@
                         <tbody>
                             @foreach($soldproductsbystock as $soldproduct)
                                 <tr>
-                                    <td><a href="{{ route('products.show', $soldproduct->product) }}">{{ $soldproduct->product_id }}</a></td>
-                                    <td><a href="{{ route('categories.show', $soldproduct->product->category) }}">{{ $soldproduct->product->category->name }}</a></td>
+                                    <td><a href="{{ route('products.show', $soldproduct->product) }}" style="color: white; font-weight: bold;">{{ $soldproduct->product_id }}</a></td>
+                                    <td><a href="{{ route('categories.show', $soldproduct->product->category) }}" style="color: white; font-weight: bold;">{{ $soldproduct->product->category->name }}</a></td>
                                     <td>{{ $soldproduct->product->name }}</td>
                                     <td>{{ $soldproduct->product->stock }}</td>
                                     <td>{{ $soldproduct->total_qty }}</td>
-                                    <td>{{ format_money(round($soldproduct->avg_price, 2)) }}</td>
-                                    <td>{{ format_money($soldproduct->incomes) }}</td>
+                                    <td><span class="text-success">{{ format_money(round($soldproduct->avg_price, 2)) }}</span></td>
+                                    <td><span class="text-success">{{ format_money($soldproduct->incomes) }}</span></td>
                                     <td class="td-actions text-right">
                                         <a href="{{ route('products.show', $soldproduct->product) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                             <i class="tim-icons icon-zoom-split"></i>
@@ -66,10 +66,10 @@
                                 @foreach ($soldproductsbyincomes as $soldproduct)
                                     <tr>
                                         <td>{{ $soldproduct->product_id }}</td>
-                                        <td><a href="{{ route('categories.show', $soldproduct->product->category) }}">{{ $soldproduct->product->category->name }}</a></td>
-                                        <td><a href="{{ route('products.show', $soldproduct->product) }}">{{ $soldproduct->product->name }}</a></td>
+                                        <td><a href="{{ route('categories.show', $soldproduct->product->category) }}" style="color: white; font-weight: bold;">{{ $soldproduct->product->category->name }}</a></td>
+                                        <td><a href="{{ route('products.show', $soldproduct->product) }}" style="color: white; font-weight: bold;">{{ $soldproduct->product->name }}</a></td>
                                         <td>{{ $soldproduct->total_qty }}</td>
-                                        <td>{{ format_money($soldproduct->incomes) }}</td>
+                                        <td><span class="text-success">{{ format_money($soldproduct->incomes) }}</span></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -101,10 +101,10 @@
                                 @foreach ($soldproductsbyavgprice as $soldproduct)
                                     <tr>
                                         <td>{{ $soldproduct->product_id }}</td>
-                                        <td><a href="{{ route('categories.show', $soldproduct->product->category) }}">{{ $soldproduct->product->category->name }}</a></td>
-                                        <td><a href="{{ route('products.show', $soldproduct->product) }}">{{ $soldproduct->product->name }}</a></td>
+                                        <td><a href="{{ route('categories.show', $soldproduct->product->category) }}" style="color: white; font-weight: bold;">{{ $soldproduct->product->category->name }}</a></td>
+                                        <td><a href="{{ route('products.show', $soldproduct->product) }}" style="color: white; font-weight: bold;">{{ $soldproduct->product->name }}</a></td>
                                         <td>{{ $soldproduct->total_qty }}</td>
-                                        <td>{{ format_money(round($soldproduct->avg_price, 2)) }}</td>
+                                        <td><span class="text-success">{{ format_money(round($soldproduct->avg_price, 2)) }}</span></td>
                                     </tr>
                                 @endforeach
                             </tbody>

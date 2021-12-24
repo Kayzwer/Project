@@ -5,7 +5,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Product Information</h4>
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Product Information</h4>
+                        </div>
+                        <div class="col-4 text-right">
+                            <a href="{{ route('products.index') }}" class="btn btn-sm btn-primary">Back to Products</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -23,14 +30,14 @@
                         <tbody>
                             <tr>
                                 <td>{{ $product->id }}</td>
-                                <td><a href="{{ route('categories.show', $product->category) }}">{{ $product->category->name }}</a></td>
+                                <td><a href="{{ route('categories.show', $product->category) }}" style="color: white; font-weight: bold;">{{ $product->category->name }}</a></td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->stock }}</td>
                                 <td>{{ $product->stock_defective }}</td>
                                 <td>{{ format_money($product->price) }}</td>
                                 <td>{{ format_money($product->solds->avg('price')) }}</td>
                                 <td>{{ $product->solds->sum('qty') }}</td>
-                                <td>{{ format_money($product->solds->sum('total_amount')) }}</td>
+                                <td><span class="text-success">{{ format_money($product->solds->sum('total_amount')) }}</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -59,10 +66,10 @@
                             @foreach ($solds as $sold)
                                 <tr>
                                     <td>{{ date('d-m-y', strtotime($sold->created_at)) }}</td>
-                                    <td><a href="{{ route('sales.show', $sold->sale_id) }}">{{ $sold->sale_id }}</a></td>
+                                    <td><a href="{{ route('sales.show', $sold->sale_id) }}" style="color: white; font-weight: bold;">{{ $sold->sale_id }}</a></td>
                                     <td>{{ $sold->qty }}</td>
                                     <td>{{ format_money($sold->price) }}</td>
-                                    <td>{{ format_money($sold->total_amount) }}</td>
+                                    <td><span class="text-success">{{ format_money($sold->total_amount) }}</span></td>
                                     <td class="td-actions text-right">
                                         <a href="{{ route('sales.show', $sold->sale_id) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="View Sale">
                                             <i class="tim-icons icon-zoom-split"></i>
@@ -98,13 +105,13 @@
                             @foreach ($receiveds as $received)
                                 <tr>
                                     <td>{{ date('d-m-y', strtotime($received->created_at)) }}</td>
-                                    <td><a href="{{ route('receipts.show', $received->receipt) }}">{{ $received->receipt_id }}</a></td>
+                                    <td><a href="{{ route('receipts.show', $received->receipt) }}" style="color: white; font-weight: bold;">{{ $received->receipt_id }}</a></td>
                                     <td style="max-width:150px;">{{ $received->receipt->title }}</td>
                                     <td>{{ $received->stock }}</td>
                                     <td>{{ $received->stock_defective }}</td>
                                     <td>{{ $received->stock + $received->stock_defective }}</td>
                                     <td class="td-actions text-right">
-                                        <a href="{{ route('receipts.show', $received->receipt) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Ver Receipt">
+                                        <a href="{{ route('receipts.show', $received->receipt) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Veiw Receipt">
                                             <i class="tim-icons icon-zoom-split"></i>
                                         </a>
                                     </td>

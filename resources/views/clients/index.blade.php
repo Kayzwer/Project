@@ -34,7 +34,7 @@
                                     <tr>
                                         <td>{{ $client->name }}<br>{{ $client->document_id }}</td>
                                         <td>
-                                            <a href="mailto:{{ $client->email }}">{{ $client->email }}</a>
+                                            <a href="mailto:{{ $client->email }}" style="color: white; font-weight: bold;">{{ $client->email }}</a>
                                             <br>
                                             {{ $client->phone }}
                                         </td>
@@ -48,7 +48,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $client->sales->count() }}</td>
-                                        <td>{{ format_money($client->transactions->sum('amount')) }}</td>
+                                        <td><span class="text-success">{{ format_money($client->transactions->sum('amount')) }}</span></td>
                                         <td>{{ ($client->sales->sortByDesc('created_at')->first()) ? date('d-m-y', strtotime($client->sales->sortByDesc('created_at')->first()->created_at)) : 'N/A' }}</td>
                                         <td class="td-actions text-right">
                                             <a href="{{ route('clients.show', $client) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">

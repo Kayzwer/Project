@@ -32,6 +32,10 @@
                                     </button>
                                 @endif
                             </div>
+                        @else
+                            <div class="col-4 text-right">
+                                <a href="{{ route('sales.index') }}" class="btn btn-sm btn-primary">Back to Sales</a>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -52,10 +56,10 @@
                                 <td>{{ $sale->id }}</td>
                                 <td>{{ date('d-m-y', strtotime($sale->created_at)) }}</td>
                                 <td>{{ $sale->user->name }}</td>
-                                <td><a href="{{ route('clients.show', $sale->client) }}">{{ $sale->client->name }}<br>{{ $sale->client->document_type }}-{{ $sale->client->document_id }}</a></td>
+                                <td><a href="{{ route('clients.show', $sale->client) }}" style="color: white; font-weight: bold;">{{ $sale->client->name }}<br>{{ $sale->client->document_type }}-{{ $sale->client->document_id }}</a></td>
                                 <td>{{ $sale->products->count() }}</td>
                                 <td>{{ $sale->products->sum('qty') }}</td>
-                                <td>{{ format_money($sale->products->sum('total_amount')) }}</td>
+                                <td><span class="text-success">{{ format_money($sale->products->sum('total_amount')) }}</span></td>
                                 <td>{!! $sale->finalized_at ? 'Completed at<br>'.date('d-m-y', strtotime($sale->finalized_at)) : (($sale->products->count() > 0) ? 'TO FINALIZE' : 'ON HOLD') !!}</td>
                             </tr>
                         </tbody>
@@ -99,8 +103,8 @@
                             @foreach ($sale->products as $sold_product)
                                 <tr>
                                     <td>{{ $sold_product->product->id }}</td>
-                                    <td><a href="{{ route('categories.show', $sold_product->product->category) }}">{{ $sold_product->product->category->name }}</a></td>
-                                    <td><a href="{{ route('products.show', $sold_product->product) }}">{{ $sold_product->product->name }}</a></td>
+                                    <td><a href="{{ route('categories.show', $sold_product->product->category) }}" style="color: white; font-weight: bold;">{{ $sold_product->product->category->name }}</a></td>
+                                    <td><a href="{{ route('products.show', $sold_product->product) }}" style="color: white; font-weight: bold;">{{ $sold_product->product->name }}</a></td>
                                     <td>{{ $sold_product->qty }}</td>
                                     <td>{{ format_money($sold_product->price) }}</td>
                                     <td><span class="text-success">{{ format_money($sold_product->total_amount) }}</span></td>

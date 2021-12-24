@@ -34,6 +34,9 @@
                                 @endif
                             </div>
                         @endif
+                        <div class="col-4 text-right">
+                            <a href="{{ route('receipts.index') }}" class="btn btn-sm btn-primary">Back to Receipts</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -55,13 +58,7 @@
                                 <td>{{ date('d-m-y', strtotime($receipt->created_at)) }}</td>
                                 <td style="max-width:150px;">{{ $receipt->title }}</td>
                                 <td>{{ $receipt->user->name }}</td>
-                                <td>
-                                    @if($receipt->provider_id)
-                                        <a href="{{ route('providers.show', $receipt->provider) }}">{{ $receipt->provider->name }}</a>
-                                    @else
-                                        N/A
-                                    @endif
-                                </td>
+                                <td><a href="{{ route('providers.show', $receipt->provider) }}" style="color: white; font-weight: bold;">{{ $receipt->provider->name }}</a></td>
                                 <td>{{ $receipt->products->count() }}</td>
                                 <td>{{ $receipt->products->sum('stock') }}</td>
                                 <td>{{ $receipt->products->sum('stock_defective') }}</td>
@@ -107,12 +104,12 @@
                         <tbody>
                             @foreach ($receipt->products as $received_product)
                                 <tr>
-                                    <td><a href="{{ route('categories.show', $received_product->product->category) }}">{{ $received_product->product->category->name }}</a></td>
-                                    <td><a href="{{ route('products.show', $received_product->product) }}">{{ $received_product->product->name }}</a></td>
+                                    <td><a href="{{ route('categories.show', $received_product->product->category) }}" style="color: white; font-weight: bold;">{{ $received_product->product->category->name }}</a></td>
+                                    <td><a href="{{ route('products.show', $received_product->product) }}" style="color: white; font-weight: bold;">{{ $received_product->product->name }}</a></td>
                                     <td>{{ $received_product->stock }}</td>
                                     <td>{{ $received_product->stock_defective }}</td>
                                     <td>{{ $received_product->stock + $received_product->stock_defective }}</td>
-                                    <td>{{ $received_product->product->price }}</td>
+                                    <td>{{ format_money($received_product->product->price) }}</td>
                                     <td><span class="text-danger">{{ format_money($received_product->product->price * ($received_product->stock + $received_product->stock_defective)) }}</span></td>
                                     <td class="td-actions text-right">
                                         @if(!$receipt->finalized_at)

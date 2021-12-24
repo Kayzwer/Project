@@ -5,7 +5,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Method information</h4>
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Method information</h4>
+                        </div>
+                        <div class="col-4 text-right">
+                            <a href="{{ route('methods.index') }}" class="btn btn-sm btn-primary">Back to Payment Methods</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -26,11 +33,11 @@
                                 <td>{{ $method->name }}</td>
                                 <td>{{ $method->description }}</td>
                                 <td>{{ $method->transactions->count() }}</td>
-                                <td>{{ format_money($balances['daily']) }}</td>
-                                <td>{{ format_money($balances['weekly']) }}</td>
-                                <td>{{ format_money($balances['quarter']) }}</td>
-                                <td>{{ format_money($balances['monthly']) }}</td>
-                                <td>{{ format_money($balances['annual']) }}</td>
+                                <td><span style="color: #1d8cf8;">{{ format_money($balances['daily']) }}</span></td>
+                                <td><span style="color: #1d8cf8;">{{ format_money($balances['weekly']) }}</span></td>
+                                <td><span style="color: #1d8cf8;">{{ format_money($balances['quarter']) }}</span></td>
+                                <td><span style="color: #1d8cf8;">{{ format_money($balances['monthly']) }}</span></td>
+                                <td><span style="color: #1d8cf8;">{{ format_money($balances['annual']) }}</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -59,9 +66,17 @@
                                 <tr>
                                     <td>{{ $transaction->id }}</td>
                                     <td>{{ date('d-m-y', strtotime($transaction->created_at)) }}</td>
-                                    <td><a href="{{ route('transactions.type', $transaction->type) }}">{{ $transactionname[$transaction->type] }}</a></td>
+                                    <td><a href="{{ route('transactions.type', $transaction->type) }}" style="color: white; font-weight: bold;">{{ $transactionname[$transaction->type] }}</a></td>
                                     <td>{{ $transaction->title }}</td>
-                                    <td>{{ format_money($transaction->amount) }}</td>
+                                    <td>
+                                        @if($transaction->amount >= 0)
+                                        <span class="text-success">
+                                        @else
+                                        <span class="text-danger">
+                                        @endif
+                                            {{ format_money($transaction->amount) }}
+                                        </span>
+                                    </td>
                                     <td>{{ $transaction->reference }}</td>
                                     <td class="td-actions text-right">
                                         @if ($transaction->sale_id)

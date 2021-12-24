@@ -5,7 +5,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Provider Information</h4>
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Provider Information</h4>
+                        </div>
+                        <div class="col-4 text-right">
+                            <a href="{{ route('providers.index') }}" class="btn btn-sm btn-primary">Back to Providers</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -28,7 +35,7 @@
                                 <td>{{ $provider->phone }}</td>
                                 <td style="max-width: 175px">{{ $provider->paymentinfo }}</td>
                                 <td>{{ $provider->transactions->count() }}</td>
-                                <td>{{ format_money(abs($provider->transactions->sum('amount'))) }}</td>
+                                <td><span class="text-danger">{{ format_money(abs($provider->transactions->sum('amount'))) }}</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -58,8 +65,8 @@
                                     <td>{{ date('d-m-y', strtotime($transaction->created_at)) }}</td>
                                     <td>{{ $transaction->id }}</td>
                                     <td>{{ $transaction->title }}</td>
-                                    <td><a href="{{ route('methods.show', $transaction->method) }}">{{ $transaction->method->name }}</a></td>
-                                    <td>{{ format_money($transaction->amount) }}</td>
+                                    <td><a href="{{ route('methods.show', $transaction->method) }}" style="color: white; font-weight: bold;">{{ $transaction->method->name }}</a></td>
+                                    <td><span class="text-danger">{{ format_money($transaction->amount) }}</span></td>
                                     <td>{{ $transaction->reference }}</td>
                                 </tr>
                             @endforeach
@@ -91,7 +98,7 @@
                             @foreach ($receipts as $receipt)
                                 <tr>
                                     <td>{{ date('d-m-y', strtotime($receipt->created_at)) }}</td>
-                                    <td><a href="{{ route('receipts.show', $receipt) }}">{{ $receipt->id }}</a></td>
+                                    <td><a href="{{ route('receipts.show', $receipt) }}" style="color: white; font-weight: bold;">{{ $receipt->id }}</a></td>
                                     <td>{{ $receipt->title }}</td>
                                     <td>{{ $receipt->products->count() }}</td>
                                     <td>{{ $receipt->products->sum('stock') }}</td>

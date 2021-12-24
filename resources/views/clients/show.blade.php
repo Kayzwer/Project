@@ -6,7 +6,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Client Information</h4>
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Client Information</h4>
+                        </div>
+                        <div class="col-4 text-right">
+                            <a href="{{ route('clients.index') }}" class="btn btn-sm btn-primary">Back to Clients</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -38,7 +45,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $client->sales->count() }}</td>
-                                <td>{{ format_money($client->transactions->sum('amount')) }}</td>
+                                <td><span class="text-success">{{ format_money($client->transactions->sum('amount')) }}</span></td>
                                 <td>{{ (empty($client->sales)) ? date('d-m-y', strtotime($client->sales->reverse()->first()->created_at)) : 'N/A' }}</td>
                             </tr>
                         </tbody>
@@ -74,8 +81,8 @@
                                 <tr>
                                     <td>{{ $transaction->id }}</td>
                                     <td>{{ date('d-m-y', strtotime($transaction->created_at)) }}</td>
-                                    <td><a href="{{ route('methods.show', $transaction->method) }}">{{ $transaction->method->name }}</a></td>
-                                    <td>{{ format_money($transaction->amount) }}</td>
+                                    <td><a href="{{ route('methods.show', $transaction->method) }}" style="color: white; font-weight: bold;">{{ $transaction->method->name }}</a></td>
+                                    <td><span class="text-success">{{ format_money($transaction->amount) }}</span></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -115,11 +122,11 @@
                         <tbody>
                             @foreach ($client->sales->reverse()->take(25) as $sale)
                                 <tr>
-                                    <td><a href="{{ route('sales.show', $sale) }}">{{ $sale->id }}</a></td>
+                                    <td><a href="{{ route('sales.show', $sale) }}" style="color: white; font-weight: bold;">{{ $sale->id }}</a></td>
                                     <td>{{ date('d-m-y', strtotime($sale->created_at)) }}</td>
                                     <td>{{ $sale->products->count() }}</td>
                                     <td>{{ $sale->products->sum('qty') }}</td>
-                                    <td>{{ format_money($sale->products->sum('total_amount')) }}</td>
+                                    <td><span class="text-success">{{ format_money($sale->products->sum('total_amount')) }}</span></td>
                                     <td>{{ ($sale->finalized_at) ? 'FINISHED' : 'ON HOLD' }}</td>
                                     <td class="td-actions text-right">
                                         <a href="{{ route('sales.show', $sale) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">

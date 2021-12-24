@@ -39,31 +39,31 @@
                                     <tr>
                                         <td>{{ date('d-m-y', strtotime($transaction->created_at)) }}</td>
                                         <td>
-                                            <a href="{{ route('transactions.type', ['type' => $transaction->type]) }}">{{ $transactionname[$transaction->type] }}</a>
+                                            <a href="{{ route('transactions.type', ['type' => $transaction->type]) }}" style="color: white; font-weight: bold;">{{ $transactionname[$transaction->type] }}</a>
                                         </td>
                                         <td style="max-width:150px">{{ $transaction->title }}</td>
-                                        <td><a href="{{ route('methods.show', $transaction->method) }}">{{ $transaction->method->name }}</a></td>
+                                        <td><a href="{{ route('methods.show', $transaction->method) }}" style="color: white; font-weight: bold;">{{ $transaction->method->name }}</a></td>
                                         <td>
                                             <span class="@if($transaction->amount >= 0) text-success @else text-danger @endif">{{ format_money($transaction->amount) }}</span>
                                         </td>
                                         <td>{{ $transaction->reference }}</td>
                                         <td>
                                             @if ($transaction->client)
-                                                <a href="{{ route('clients.show', $transaction->client) }}">{{ $transaction->client->name }}<br>{{ $transaction->client->document_type }}-{{ $transaction->client->document_id }}</a>
+                                                <a href="{{ route('clients.show', $transaction->client) }}" style="color: white; font-weight: bold;">{{ $transaction->client->name }}<br>{{ $transaction->client->document_type }}-{{ $transaction->client->document_id }}</a>
                                             @else
                                                 Does not apply
                                             @endif
                                         </td>
                                         <td>
                                             @if ($transaction->provider)
-                                                <a href="{{ route('providers.show', $transaction->provider) }}">{{ $transaction->provider->name }}</a>
+                                                <a href="{{ route('providers.show', $transaction->provider) }}" style="color: white; font-weight: bold;">{{ $transaction->provider->name }}</a>
                                             @else
                                                 Does not apply
                                             @endif
                                         </td>
                                         <td>
                                             @if ($transaction->transfer)
-                                                <a href="{{ route('transfer.show', $transaction->transfer) }}">ID {{ $transaction->transfer->id }}</a>
+                                                <a href="{{ route('transfer.show', $transaction->transfer) }}" style="color: white; font-weight: bold;">ID {{ $transaction->transfer->id }}</a>
                                             @else
                                                 Does not apply
                                             @endif
@@ -102,9 +102,9 @@
     </div>
     <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color: #32325d;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Transaction</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: white;">New Transaction</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>

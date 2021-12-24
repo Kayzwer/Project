@@ -33,13 +33,7 @@
                                 <tr>
                                     <td>{{ date('d-m-y', strtotime($receipt->created_at)) }}</td>
                                     <td style="max-width:150px">{{ $receipt->title }}</td>
-                                    <td>
-                                        @if($receipt->provider_id)
-                                            <a href="{{ route('providers.show', $receipt->provider) }}">{{ $receipt->provider->name }}</a>
-                                        @else
-                                            N/A
-                                        @endif
-                                    </td>
+                                    <td><a href="{{ route('providers.show', $receipt->provider) }}" style="color: white; font-weight: bold;">{{ $receipt->provider->name }}</a></td>
                                     <td>{{ $receipt->products->count() }}</td>
                                     <td>{{ $receipt->products->sum('stock') }}</td>
                                     <td>{{ $receipt->products->sum('stock_defective') }}</td>

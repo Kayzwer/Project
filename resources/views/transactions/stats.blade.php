@@ -140,16 +140,24 @@
                         <table class="table">
                             <thead>
                                 <th>Method</th>
-                                <th>Transactions {{ $date->year }}</th>
+                                <th>Transactions Count {{ $date->year }}</th>
                                 <th>Balance {{ $date->year }}</th>
                                 <th></th>
                             </thead>
                             <tbody>
                                 @foreach($methods as $method)
                                     <tr>
-                                        <td><a href="{{ route('methods.show', $method) }}">{{ $method->name }}</a></td>
-                                        <td>{{ format_money($transactionsperiods['Year']->where('payment_method_id', $method->id)->count()) }}</td>
-                                        <td>{{ format_money($transactionsperiods['Year']->where('payment_method_id', $method->id)->sum('amount')) }}</td>
+                                        <td><a href="{{ route('methods.show', $method) }}" style="color: white; font-weight: bold;">{{ $method->name }}</a></td>
+                                        <td>{{ $transactionsperiods['Year']->where('payment_method_id', $method->id)->count() }}</td>
+                                        <td>
+                                            @if($transactionsperiods['Year']->where('payment_method_id', $method->id)->sum('amount') >= 0)
+                                            <span class="text-success">
+                                            @else
+                                            <span class="text-danger">
+                                            @endif
+                                                {{ format_money($transactionsperiods['Year']->where('payment_method_id', $method->id)->sum('amount')) }}
+                                            </span>
+                                        </td>
                                         <td>
                                             <a href="{{ route('methods.show', $method) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                                 <i class="tim-icons icon-zoom-split"></i>

@@ -36,11 +36,11 @@
                                         <td>{{ $provider->description }}</td>
 
                                         <td>
-                                            <a href="mailto:{{ $provider->email }}">{{ $provider->email }}</a>
+                                            <a href="mailto:{{ $provider->email }}" style="color: white; font-weight: bold;">{{ $provider->email }}</a>
                                         </td>
                                         <td>{{ $provider->phone }}</td>
                                         <td>{{ $provider->transactions->count() }}</td>
-                                        <td>{{ format_money(abs($provider->transactions->sum('amount'))) }}</td>
+                                        <td><span class="text-danger">{{ format_money(abs($provider->transactions->sum('amount'))) }}</span></td>
                                         <td class="td-actions text-right">
                                             <a href="{{ route('providers.show', $provider) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                                 <i class="tim-icons icon-zoom-split"></i>
