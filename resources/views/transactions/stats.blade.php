@@ -151,7 +151,7 @@
                                         <td>{{ format_money($transactionsperiods['Year']->where('payment_method_id', $method->id)->count()) }}</td>
                                         <td>{{ format_money($transactionsperiods['Year']->where('payment_method_id', $method->id)->sum('amount')) }}</td>
                                         <td>
-                                            <a href="{{ route('methods.show', $method) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="See Method">
+                                            <a href="{{ route('methods.show', $method) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                                 <i class="tim-icons icon-zoom-split"></i>
                                             </a>
                                         </td>

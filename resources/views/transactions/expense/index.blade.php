@@ -42,13 +42,13 @@
                                                     <i class="tim-icons icon-zoom-split"></i>
                                                 </a>
                                             @else
-                                                <a href="{{ route('transactions.edit', $transaction) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Transaction">
+                                                <a href="{{ route('transactions.edit', $transaction) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Expense">
                                                     <i class="tim-icons icon-pencil"></i>
                                                 </a>
                                                 <form action="{{ route('transactions.destroy', $transaction) }}" method="post" class="d-inline">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Transaction" onclick="confirm('Are you sure you want to delete this expense?\n\nPlease check the details\nExpense: {{ $transaction->title }}\nAmount: {{ format_money($transaction->amount) }}') ? this.parentElement.submit() : ''">
+                                                    <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Expense" onclick="confirm('Are you sure you want to delete this expense?\n\nPlease check the details\nExpense: {{ $transaction->title }}\nAmount: {{ format_money($transaction->amount) }}') ? this.parentElement.submit() : ''">
                                                         <i class="tim-icons icon-simple-remove"></i>
                                                     </button>
                                                 </form>

@@ -36,7 +36,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">products: {{ $products->count() }}</h4>
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Number of products: {{ $products->count() }}</h4>
+                        </div>
+                        <div class="col-4 text-right">
+                            <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">Add product</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table">
