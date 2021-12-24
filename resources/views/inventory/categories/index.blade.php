@@ -10,6 +10,7 @@
                             <h4 class="card-title">Categories</h4>
                         </div>
                         <div class="col-4 text-right">
+                            <a href="{{ route('categories.export') }}" class="btn btn-sm btn-primary">Export Categories</a>
                             <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary">New Category</a>
                         </div>
                     </div>
@@ -22,7 +23,7 @@
                             <thead class=" text-primary">
                                 <th scope="col">Name</th>
                                 <th scope="col">products</th>
-                                <th scope="col">Total Stock</th>
+                                <th scope="col">Stock</th>
                                 <th scope="col">Defective Stock</th>
                                 <th scope="col">Average Price of Product</th>
                                 <th scope="col"></th>

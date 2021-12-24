@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\ProductCategory;
+use Illuminate\Http\Request;
 use App\Http\Requests\ProductCategoryRequest;
 
 class ProductCategoryController extends Controller
@@ -99,5 +100,33 @@ class ProductCategoryController extends Controller
         return redirect()
             ->route('categories.index')
             ->withStatus('Category deleted successfully.');
+    }
+
+    public function export(Request $request)
+    {
+        $fileName = 'categories.csv';
+        $categories = ProductCategory::all();
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
+        $columns = array('name', 'number_of_product', 'stock', 'defective_stock', 'average_price_of_product');
+        $callback = function() use($categories, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            foreach($categories as $category) {
+                $row['name'] = $category->name;
+                $row['number_of_product'] = count($category->products);
+                $row['stock'] = $category->products->sum('stock');
+                $row['defective_stock'] = $category->products->sum('stock_defective');
+                $row['average_price_of_product'] = $category->products->avg('price');
+                fputcsv($file, array($row['name'], $row['number_of_product'], $row['stock'], $row['defective_stock'], $row['average_price_of_product'] ));
+            }
+            fclose($file);
+        };
+        return response()->stream($callback, 200, $headers);
     }
 }

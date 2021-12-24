@@ -71,6 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/export-providers', 'ProviderController@export')->name('providers.export');
 
     Route::get('/export-transfers', 'TransferController@export')->name('transfer.export');
+
+    Route::get('/export-categories', 'ProductCategoryController@export')->name('categories.export');
 });
 
 Route::group(['middleware' => 'auth'], function () {
