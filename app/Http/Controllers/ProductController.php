@@ -117,6 +117,7 @@ class ProductController extends Controller
                         $join->on("products.product_category_id", "=", "product_categories.id");
                     })
                     ->select("products.name", "product_categories.name as category", "products.price", "products.stock", "products.stock_defective")
+                    ->whereNull("products.deleted_at")
                     ->get();
         $headers = array(
             "Content-type" => "text/csv",

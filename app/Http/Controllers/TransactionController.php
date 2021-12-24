@@ -397,7 +397,7 @@ class TransactionController extends Controller
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
             foreach($payments as $payment) {
-                echo $row['title'] = $payment->title;
+                $row['title'] = $payment->title;
                 $row['provider'] = $payment->provider;
                 $row['amount'] = $payment->amount;
                 $row['payment_method'] = $payment->name;

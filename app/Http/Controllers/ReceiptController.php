@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Receipt;
 use App\Provider;
 use App\Product;
-
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\ReceivedProduct;
 use Illuminate\Http\Request;
@@ -170,5 +170,34 @@ class ReceiptController extends Controller
         return redirect()
             ->route('receipts.show', $receipt)
             ->withStatus('Product removed successfully.');
+    }
+
+    public function export(Request $request)
+    {
+        $fileName = 'receipts.csv';
+        $receipts = Receipt::all();
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
+        $columns = array('title', 'provider', 'number_of_products', 'stock', 'defective_stock', 'created_at');
+        $callback = function() use($receipts, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            foreach($receipts as $receipt) {
+                $row['title'] = $receipt->title;
+                $row['provider'] = $receipt->provider->name;
+                $row['number_of_products'] = $receipt->products->count();
+                $row['stock'] = $receipt->products->sum('stock');
+                $row['defective_stock'] = $receipt->products->sum('stock_defective');
+                $row['created_at'] = $receipt->created_at;
+                fputcsv($file, array($row['title'], $row['provider'], $row['number_of_products'], $row['stock'], $row['defective_stock'], $row['created_at']));
+            }
+            fclose($file);
+        };
+        return response()->stream($callback, 200, $headers);
     }
 }
