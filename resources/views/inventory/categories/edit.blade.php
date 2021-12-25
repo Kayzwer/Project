@@ -16,10 +16,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('categories.update', $category) }}" autocomplete="off">
+                        <form method="post" action="{{ route('categories.update', $category) }}" autocomplete="off" id="the_form">
                             @csrf
                             @method('put')
-
                             <h6 class="heading-small text-muted mb-4">Category Information</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
@@ -27,10 +26,8 @@
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Name" value="{{ old('name', $category->name) }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'name'])
                                 </div>
-
-
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">Save</button>
+                                    <button type="submit" class="btn btn-success mt-4" data-toggle="tooltip" onclick="return clicked()">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -39,4 +36,13 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function clicked() {
+            if (confirm('Do you want to edit this income?\nPlease check the details')) {
+                document.getElementById("the_form").submit();
+            } else {
+                return false;
+            }
+        }
+    </script>
 @endsection

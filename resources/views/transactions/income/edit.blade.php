@@ -21,7 +21,7 @@
                             @method('put')
                             <input type="hidden" name="type" value="{{ $transaction->type }}">
                             <input type="hidden" name="user_id" value="{{ $transaction->user_id }}">
-                            <h6 class="heading-small text-muted mb-4">Información del Ingreso</h6>
+                            <h6 class="heading-small text-muted mb-4">Income Information</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-title">Title</label>
@@ -68,7 +68,7 @@
     </div>
     <script type="text/javascript">
         function clicked() {
-            if (confirm('Do you want to edit this income? \nPlease check the details\n\nTitle: {{ $transaction->title }}\nPayment Method: {{ $payment_method['name'] }}\nAmount: {{ format_money($transaction->amount) }}\nReference: {{ $transaction->reference }}')) {
+            if (confirm('Do you want to edit this income?\nPlease check the details')) {
                 document.getElementById("the_form").submit();
             } else {
                 return false;

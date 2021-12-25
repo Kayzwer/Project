@@ -33,10 +33,7 @@
                                         Finalize Receipt
                                     </button>
                                 @endif
-                            </div>
                         @endif
-                        <div class="col-4 text-right">
-                            
                         </div>
                     </div>
                 </div>

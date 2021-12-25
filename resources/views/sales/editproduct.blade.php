@@ -54,7 +54,7 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">Continue</button>
+                                    <button type="submit" class="btn btn-success mt-4" onclick="return clicked()">Continue</button>
                                 </div>
                             </div>
                         </form>
@@ -62,6 +62,15 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            function clicked() {
+                if (confirm('Do you want to edit this product for the sale?\nPlease check the details')) {
+                    document.getElementById("the_form").submit();
+                } else {
+                    return false;
+                }
+            }
+        </script>
 @endsection
 
 @push('js')

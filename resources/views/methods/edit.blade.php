@@ -16,11 +16,11 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('methods.update', $method) }}" autocomplete="off">
+                        <form method="post" action="{{ route('methods.update', $method) }}" autocomplete="off" id="the_form">
                             @csrf
                             @method('put')
 
-                            <h6 class="heading-small text-muted mb-4">{{ __('Product information') }}</h6>
+                            <h6 class="heading-small text-muted mb-4">{{ __('Payment Method information') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
@@ -35,7 +35,7 @@
 
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4" data-toggle="tooltip" onclick="return clicked()">{{ __('Save') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -44,4 +44,13 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function clicked() {
+            if (confirm('Do you want to edit this payment method?\nPlease check the details')) {
+                document.getElementById("the_form").submit();
+            } else {
+                return false;
+            }
+        }
+    </script>
 @endsection

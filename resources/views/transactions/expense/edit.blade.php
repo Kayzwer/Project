@@ -65,7 +65,7 @@
     </div>
     <script type="text/javascript">
         function clicked() {
-            if (confirm('Do you want to edit this expense? \nPlease check the details\n\nTitle: {{ $transaction->title }}\nCategory: {{ $payment_method['name'] }}\nAmount: {{ format_money($transaction->amount) }}\nReference: {{ $transaction->reference }}')) {
+            if (confirm('Do you want to edit this expense?\nPlease check the details')) {
                 document.getElementById("the_form").submit();
             } else {
                 return false;

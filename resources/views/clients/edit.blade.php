@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('clients.update', $client) }}" autocomplete="off">
+                        <form method="post" action="{{ route('clients.update', $client) }}" autocomplete="off" id="the_form">
                             @csrf
                             @method('put')
 
@@ -43,7 +43,7 @@
                                     @include('alerts.feedback', ['field' => 'phone'])
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4" data-toggle="tooltip" onclick="return clicked()">{{ __('Save') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -52,4 +52,13 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function clicked() {
+            if (confirm('Do you want to edit this client?\nPlease check the details')) {
+                document.getElementById("the_form").submit();
+            } else {
+                return false;
+            }
+        }
+    </script>
 @endsection
