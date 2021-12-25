@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">Exit Expense</h3>
+                                <h3 class="mb-0">Edit Expense</h3>
                             </div>
                             <div class="col-4 text-right">
                                 <a href="{{ route('transactions.type', ['type' => 'expense']) }}" class="btn btn-sm btn-primary">Back to List</a>
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('transactions.update', $transaction) }}" autocomplete="off">
+                        <form method="post" action="{{ route('transactions.update', $transaction) }}" autocomplete="off" id="the_form">
                             @csrf
                             @method('put')
                             <input type="hidden" name="type" value="{{ $transaction->type }}">
@@ -54,7 +54,7 @@
                                     @include('alerts.feedback', ['field' => 'reference'])
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">Save</button>
+                                    <button type="submit" class="btn btn-success mt-4" data-toggle="tooltip" onclick="return clicked()">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -63,6 +63,15 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function clicked() {
+            if (confirm('Do you want to edit this expense? \nPlease check the details\n\nTitle: {{ $transaction->title }}\nCategory: {{ $payment_method['name'] }}\nAmount: {{ format_money($transaction->amount) }}\nReference: {{ $transaction->reference }}')) {
+                document.getElementById("the_form").submit();
+            } else {
+                return false;
+            }
+        }
+    </script>
 @endsection
 
 @push('js')

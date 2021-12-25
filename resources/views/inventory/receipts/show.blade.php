@@ -17,8 +17,9 @@
                         <div class="col-8">
                             <h4 class="card-title">Receipt Summary</h4>
                         </div>
+                        <div class="col-4 text-right">
+                            <a href="{{ route('receipts.index') }}" class="btn btn-sm btn-primary">Back to Receipts</a>
                         @if (!$receipt->finalized_at)
-                            <div class="col-4 text-right">
                                 @if ($receipt->products->count() === 0)
                                     <form action="{{ route('receipts.destroy', $receipt) }}" method="post" class="d-inline">
                                         @csrf
@@ -35,7 +36,7 @@
                             </div>
                         @endif
                         <div class="col-4 text-right">
-                            <a href="{{ route('receipts.index') }}" class="btn btn-sm btn-primary">Back to Receipts</a>
+                            
                         </div>
                     </div>
                 </div>

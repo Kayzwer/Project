@@ -209,9 +209,9 @@
 
     <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color: #32325d;"> 
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Transaction</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: white;">New Transaction</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
