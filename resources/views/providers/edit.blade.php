@@ -60,7 +60,11 @@
     </div>
     <script type="text/javascript">
         function clicked() {
-            if (confirm('Do you want to edit this provider?\nPlease check the details')) {
+            var name = document.getElementById("input-name").value;
+            var email = document.getElementById("input-email").value;
+            var phone = document.getElementById("input-phone").value;
+            var payment_info = document.getElementById("input-paymentinfo").value;
+            if (confirm('Do you want to edit this provider?\nPlease check the details\n\nName: {{$provider->name}} -> ' + name + '\nEmail: {{$provider->email}} -> ' + email + '\nTelephone: {{$provider->phone}} -> ' + phone + '\nPayment Information: {{$provider->paymentinfo}} -> ' + payment_info)) {
                 document.getElementById("the_form").submit();
             } else {
                 return false;

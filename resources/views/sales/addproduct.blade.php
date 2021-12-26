@@ -50,7 +50,7 @@
 
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-total">Total Amount</label>
-                                    <input type="text" name="total_amount" id="input-total" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="0$" disabled>
+                                    <input type="text" name="total_amount" id="input-total" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="$0" disabled>
                                     @include('alerts.feedback', ['field' => 'product_id'])
                                 </div>
 
@@ -78,7 +78,7 @@
         input_qty.addEventListener('input', updateTotal);
         input_price.addEventListener('input', updateTotal);
         function updateTotal () {
-            input_total.value = (parseInt(input_qty.value) * parseFloat(input_price.value))+"$";
+            input_total.value = "$" + (parseInt(input_qty.value) * parseFloat(input_price.value));
         }
     </script>
 @endpush

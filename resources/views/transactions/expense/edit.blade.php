@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Exit Expense', 'pageSlug' => 'expenses', 'section' => 'transactions'])
+@extends('layouts.app', ['page' => 'Edit Expense', 'pageSlug' => 'expenses', 'section' => 'transactions'])
 
 @section('content')
     <div class="container-fluid mt--7">
@@ -29,7 +29,7 @@
                                     @include('alerts.feedback', ['field' => 'title'])
                                 </div>
                                 <div class="form-group{{ $errors->has('payment_method_id') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-method">Categories</label>
+                                    <label class="form-control-label" for="input-method">Payment Method</label>
                                     <select name="payment_method_id" id="input-method" class="form-select form-control-alternative{{ $errors->has('payment_method_id') ? ' is-invalid' : '' }}" required>
                                         @foreach ($payment_methods as $payment_method)
                                             @if($payment_method['id'] == old('payment_method_id') or $payment_method['id'] == $transaction->payment_method_id)
@@ -65,7 +65,11 @@
     </div>
     <script type="text/javascript">
         function clicked() {
-            if (confirm('Do you want to edit this expense?\nPlease check the details')) {
+            var title = document.getElementById("input-title").value;
+            var payment_method = document.getElementById("input-method").selectedOptions[0].text;
+            var amount = document.getElementById("input-amount").value;
+            var reference = document.getElementById("input-reference").value;
+            if (confirm('Do you want to edit this expense?\nPlease check the details\n\nTitle: {{ $transaction->title }} -> ' + title + '\nPayment Method:@foreach ($payment_methods as $payment_method) @if($payment_method['id'] == old('payment_method_id') or $payment_method['id'] == $transaction->payment_method_id){{$payment_method['name']}}@endif @endforeach-> ' + payment_method + '\nAmount: {{ $transaction->amount }} -> ' + amount + '\nReference: {{ $transaction->reference }} -> ' + reference)) {
                 document.getElementById("the_form").submit();
             } else {
                 return false;

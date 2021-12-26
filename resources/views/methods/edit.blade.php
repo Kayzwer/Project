@@ -46,7 +46,9 @@
     </div>
     <script type="text/javascript">
         function clicked() {
-            if (confirm('Do you want to edit this payment method?\nPlease check the details')) {
+            var name = document.getElementById("input-name").value;
+            var description = document.getElementById("input-description").value;
+            if (confirm('Do you want to edit this payment method?\nPlease check the details\n\nName: {{$method->name}} -> ' + name + '\nDescription: {{$method->description}} -> ' + description)) {
                 document.getElementById("the_form").submit();
             } else {
                 return false;

@@ -26,9 +26,9 @@
                                     <select name="product_id" id="input-product" class="form-select form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" required>
                                         @foreach ($products as $product)
                                             @if($product['id'] == old('product_id') or $product['id'] == $receivedproduct->product_id )
-                                                <option value="{{$product['id']}}" selected>[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ $product->price }}$</option>
+                                                <option value="{{$product['id']}}" selected>[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ format_money($product->price) }}</option>
                                             @else
-                                                <option value="{{$product['id']}}">[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ $product->price }}$</option>
+                                                <option value="{{$product['id']}}">[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ format_money($product->price) }}</option>
                                             @endif
                                         @endforeach
                                     </select>
@@ -48,7 +48,7 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">Continue</button>
+                                    <button type="submit" class="btn btn-success mt-4" data-toggle="tooltip" onclick="return clicked()">Continue</button>
                                 </div>
                             </div>
                         </form>
@@ -56,6 +56,18 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            function clicked() {
+                var product = document.getElementById("input-product").selectedOptions[0].text;
+                var stock = document.getElementById("input-stock").value;
+                var defective_stock = document.getElementById("input-stock_defective").value;
+                if (confirm('Do you want to edit this product?\nPlease check the details\n\nProduct:@foreach ($products as $product) @if($product['id'] == old('product_id') or $product['id'] == $receivedproduct->product_id )[{{ $product->category->name }}] {{$product->name}} - Base price: {{ format_money($product->price) }}@endif @endforeach-> ' + product + '\nStock: {{$receivedproduct->stock}} -> ' + stock + '\nDefective stock: {{$receivedproduct->stock_defective}} -> ' + defective_stock)) {
+                    document.getElementById("the_form").submit();
+                } else {
+                    return false;
+                }
+            }
+        </script>
 @endsection
 
 @push('js')

@@ -85,7 +85,13 @@
     </div>
     <script type="text/javascript">
         function clicked() {
-            if (confirm('Do you want to edit this product?\nPlease check the details')) {
+            var name = document.getElementById("input-name").value;
+            var category = document.getElementById("input-category").selectedOptions[0].text;
+            var description = document.getElementById("input-description").value;
+            var stock = document.getElementById("input-stock").value;
+            var defective_stock = document.getElementById("input-stock_defective").value;
+            var price = document.getElementById("input-price").value;
+            if (confirm('Do you want to edit this product?\nPlease check the details\n\nName: {{$product->name}} -> ' + name + '\nCategory:@foreach ($categories as $category) @if($category['id'] == old('document') or $category['id'] == $product->product_category_id){{$category['name']}}@endif @endforeach-> ' + category + '\nDescription: {{$product->description}} -> ' + description + '\nStock: {{$product->stock}} -> ' + stock + '\nDefective stock: {{$product->stock_defective}} -> ' + defective_stock + '\nPrice: {{$product->price}} -> ' + price)) {
                 document.getElementById("the_form").submit();
             } else {
                 return false;

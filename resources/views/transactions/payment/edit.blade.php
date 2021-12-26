@@ -81,7 +81,12 @@
     </div>
     <script type="text/javascript">
         function clicked() {
-            if (confirm('Do you want to edit this payment?\nPlease check the details')) {
+            var title = document.getElementById("input-title").value;
+            var provider = document.getElementById("input-provider").selectedOptions[0].text;
+            var payment_method = document.getElementById("input-method").selectedOptions[0].text;
+            var amount = document.getElementById("input-amount").value;
+            var reference = document.getElementById("input-reference").value;
+            if (confirm('Do you want to edit this expense?\nPlease check the details\n\nTitle: {{ $transaction->title }} -> ' + title + '\nProvider:@foreach ($providers as $provider) @if($provider['id'] == old('provider') or $provider['id'] ==  $transaction->provider_id){{$provider['name']}}@endif @endforeach-> ' + provider + '\nPayment Method:@foreach ($payment_methods as $payment_method) @if($payment_method['id'] == old('payment_method_id') or $payment_method['id'] == $transaction->payment_method_id){{$payment_method['name']}}@endif @endforeach-> ' + payment_method + '\nAmount: {{ $transaction->amount }} -> ' + amount + '\nReference: {{ $transaction->reference }} -> ' + reference)) {
                 document.getElementById("the_form").submit();
             } else {
                 return false;

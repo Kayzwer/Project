@@ -49,7 +49,7 @@
 
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-total">Total Amount</label>
-                                    <input type="text" name="total_amount" id="input-total" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="{{ old('total_amount', $soldproduct->total_amount) }}" disabled>
+                                    <input type="text" name="total_amount" id="input-total" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="{{ old('total_amount', format_money($soldproduct->total_amount)) }}" disabled>
                                     @include('alerts.feedback', ['field' => 'product_id'])
                                 </div>
 
@@ -64,7 +64,10 @@
         </div>
         <script type="text/javascript">
             function clicked() {
-                if (confirm('Do you want to edit this product for the sale?\nPlease check the details')) {
+                var price = document.getElementById("input-price").value;
+                var qty = document.getElementById("input-qty").value;
+                var total = document.getElementById("input-total").value;
+                if (confirm('Do you want to edit this product for the sale?\nPlease check the details\n\nPrice: {{ $soldproduct->price }} -> ' + price + '\nQuantity: {{ $soldproduct->qty }} -> ' + qty + '\nTotal: {{ format_money($soldproduct->total_amount) }} -> ' + total)) {
                     document.getElementById("the_form").submit();
                 } else {
                     return false;
@@ -86,7 +89,7 @@
         input_qty.addEventListener('input', updateTotal);
         input_price.addEventListener('input', updateTotal);
         function updateTotal () {
-            input_total.value = (parseInt(input_qty.value) * parseFloat(input_price.value))+"$";
+            input_total.value = "$" + (parseInt(input_qty.value) * parseFloat(input_price.value));
         }
     </script>
 @endpush

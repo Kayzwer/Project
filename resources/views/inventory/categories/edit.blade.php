@@ -38,7 +38,7 @@
     </div>
     <script type="text/javascript">
         function clicked() {
-            if (confirm('Do you want to edit this income?\nPlease check the details')) {
+            if (confirm('Do you want to edit this product category?\nPlease check the details\n\nName: {{$category->name}} -> ' + document.getElementById("input-name").value)) {
                 document.getElementById("the_form").submit();
             } else {
                 return false;

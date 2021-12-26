@@ -54,7 +54,11 @@
     </div>
     <script type="text/javascript">
         function clicked() {
-            if (confirm('Do you want to edit this client?\nPlease check the details')) {
+            var name = document.getElementById("input-name").value;
+            var doc_id = document.getElementById("input-document_id").value;
+            var email = document.getElementById("input-email").value;
+            var phone = document.getElementById("input-phone").value;
+            if (confirm('Do you want to edit this client?\nPlease check the details\n\nName: {{$client->name}} -> ' + name + '\nDocument Number: {{$client->document_id}} -> ' + doc_id + '\nEmail: {{$client->email}} -> ' + email + '\nPhone: {{$client->phone}} -> ' + phone)) {
                 document.getElementById("the_form").submit();
             } else {
                 return false;
