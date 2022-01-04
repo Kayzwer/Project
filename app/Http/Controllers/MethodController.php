@@ -20,6 +20,7 @@ class MethodController extends Controller
             'methods' => PaymentMethod::paginate(15), 
             'month' => Carbon::now()->month
         ]);
+        // Return methods.index page with payment methods data
     }
 
     /**
@@ -30,6 +31,7 @@ class MethodController extends Controller
     public function create()
     {
         return view('methods.create');
+        // Return methods.create page
     }
 
     /**
@@ -45,6 +47,7 @@ class MethodController extends Controller
         return redirect()
             ->route('methods.index')
             ->withStatus('Payment method created successfully.');
+        // Store the created method and redirect user to methods.index page with message 'Payment method created successfully.'
     }
 
     /**
@@ -79,6 +82,7 @@ class MethodController extends Controller
             'balances' => $balances,
             'transactionname' => $transactionname
         ]);
+        // Return methods.show page with necessary 
     }
 
     /**
@@ -90,6 +94,7 @@ class MethodController extends Controller
     public function edit(PaymentMethod $method)
     {
         return view('methods.edit', compact('method'));
+        // Return methods.edit page with payment methods in an array
     }
 
     /**
@@ -106,6 +111,7 @@ class MethodController extends Controller
         return redirect()
             ->route('methods.index')
             ->withStatus('Payment method updated successfully.');
+        // Update the payment method record and redirect user to methods.index with message 'Payment method updated successfully.'
     }
 
     /**
@@ -119,5 +125,6 @@ class MethodController extends Controller
         $method->delete();
         
         return back()->withStatus('Payment method removed successfully.');
+        // Delete the payment method record and redirect user to the previous page with message 'Payment method removed successfully.'
     }
 }

@@ -20,6 +20,7 @@ class ProviderController extends Controller
         $providers = Provider::paginate(25);
 
         return view('providers.index', compact('providers'));
+        // Return providers.index page with splitted providers data in array
     }
 
     /**
@@ -30,6 +31,7 @@ class ProviderController extends Controller
     public function create()
     {
         return view('providers.create');
+        // Return providers.create page
     }
 
     /**
@@ -46,6 +48,7 @@ class ProviderController extends Controller
         return redirect()
             ->route('providers.index')
             ->withStatus('Provider registered successfully.');
+        // Store new created provider in databse and redirect user to providers.index page with message 'Provider registered successfully.'
     }
 
     /**
@@ -57,6 +60,7 @@ class ProviderController extends Controller
     public function edit(Provider $provider)
     {
         return view('providers.edit', compact('provider'));
+        // Return providers.edit page with provider data in array
     }
 
 
@@ -73,6 +77,7 @@ class ProviderController extends Controller
         $receipts = $provider->receipts()->latest()->limit(25)->get();
 
         return view('providers.show', compact('provider', 'transactions', 'receipts'));
+        // Return providers.show page with provider data and transactions, receipts in array
     }
 
     /**
@@ -89,6 +94,7 @@ class ProviderController extends Controller
         return redirect()
             ->route('providers.index')
             ->withStatus('Provider updated successfully.');
+        // Update the provider in database and redirect user to providers.index page with message 'Provider updated successfully.'
     }
 
     /**
@@ -104,16 +110,17 @@ class ProviderController extends Controller
         return redirect()
             ->route('providers.index')
             ->withStatus('Provider removed successfully.');
+        // Delete the provider in database and redirect user to providers.index page with message 'Provider removed successfully.'
     }
 
     public function export(Request $request)
     {
-        $fileName = 'providers.csv';
+        $fileName = 'providers.csv'; // Define .csv file name
         $providers = DB::table('providers')
         ->Join('transactions','transactions.provider_id','=','providers.id')
         ->select('providers.name','providers.paymentinfo','providers.created_at',DB::raw('ABS(SUM(transactions.amount)) AS amount'))
         ->groupBy('providers.id')
-        ->get();
+        ->get(); // Query the needed data from DB
         $headers = array(
             "Content-type" => "text/csv",
             "Content-Disposition" => "attachment; filename=$fileName",
@@ -121,7 +128,7 @@ class ProviderController extends Controller
             "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
             "Expires" => "0"
         );
-        $columns = array('name', 'paymentinfo', 'created_at', 'amount');
+        $columns = array('name', 'paymentinfo', 'created_at', 'amount'); // Define columns in the csv file
         $callback = function() use($providers, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
@@ -133,7 +140,9 @@ class ProviderController extends Controller
                 fputcsv($file, array($row['name'], $row['paymentinfo'], $row['created_at'], $row['amount']));
             }
             fclose($file);
+            // Write the data into the csv and close the writer
         };
         return response()->stream($callback, 200, $headers);
+        // Create a new streamed response object to make a download file
     }
 }

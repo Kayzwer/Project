@@ -31,6 +31,7 @@ class TransactionController extends Controller
         $transactions = Transaction::latest()->paginate(25);
 
         return view('transactions.index', compact('transactions', 'transactionname'));
+        // Return transactions.index page with splitted transactions in array
     }
 
     public function stats()
@@ -66,6 +67,7 @@ class TransactionController extends Controller
             'date'                  => Carbon::now(),
             'methods'               => PaymentMethod::all()
         ]);
+        // Calculate the statistics the needed and return transactions.stats page with these statistic
     }
 
     public function type($type)

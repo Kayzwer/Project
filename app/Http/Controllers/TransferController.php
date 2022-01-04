@@ -21,6 +21,7 @@ class TransferController extends Controller
         return view('transfers.index', [
             'transfers' => Transfer::latest()->paginate(25)
         ]);
+        // Return transafers.index page with latest and splitted transfer records in array
     }
 
     /**
@@ -33,6 +34,7 @@ class TransferController extends Controller
         return view('transfers.create', [
             'methods' => PaymentMethod::all()
         ]);
+        // Return transfers.create with methods in array
     }
 
     /**
@@ -68,6 +70,7 @@ class TransferController extends Controller
         return redirect()
             ->route('transfer.index')
             ->withStatus('Transaction registered successfully.');
+        // Create an income record and an expense record in database and redirect user to transfer.index page with message 'Transaction registered successfully.'
     }
 
     /**
@@ -82,14 +85,15 @@ class TransferController extends Controller
 
         return back()
             ->withStatus('Transfer removed successfully.');
+        // Delete the transfer record and redirect user to previous page with message 'Transfer removed successfully.'
     }
 
     public function export(Request $request)
     {
-        $fileName = 'transfers.csv';
+        $fileName = 'transfers.csv'; // Define .csv file name
         $transfers = DB::table('transfers')
         ->select('transfers.title','transfers.sended_amount','transfers.received_amount','transfers.created_at')
-        ->get();
+        ->get(); // Query the needed data from DB
         $headers = array(
             "Content-type"        => "text/csv",
             "Content-Disposition" => "attachment; filename=$fileName",
@@ -97,7 +101,7 @@ class TransferController extends Controller
             "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
             "Expires"             => "0"
         );
-        $columns = array('title', 'sended_amount', 'received_amount', 'created_at');
+        $columns = array('title', 'sended_amount', 'received_amount', 'created_at'); // Define columns in the csv file
         $callback = function() use($transfers, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
@@ -109,7 +113,9 @@ class TransferController extends Controller
                 fputcsv($file, array($row['title'], $row['sended_amount'], $row['received_amount'], $row['created_at']));
             }
             fclose($file);
+            // Write the data into the csv and close the writer
         };
         return response()->stream($callback, 200, $headers);
+        // Create a new streamed response object to make a download file
     }
 }

@@ -19,6 +19,7 @@ class ProductCategoryController extends Controller
         $categories = ProductCategory::paginate(25);
 
         return view('inventory.categories.index', compact('categories'));
+        // Return inventory.categories.index page with splited categories array
     }
 
     /**
@@ -29,6 +30,7 @@ class ProductCategoryController extends Controller
     public function create()
     {
         return view('inventory.categories.create');
+        // Return inventory.categories.create page
     }
 
     /**
@@ -44,6 +46,7 @@ class ProductCategoryController extends Controller
         return redirect()
             ->route('categories.index')
             ->withStatus('Category created successfully.');
+        // Get inputs from view component and store a new record in category table and return categories.index page with message 'Category created successfully.'
     }
 
     /**
@@ -58,6 +61,7 @@ class ProductCategoryController extends Controller
             'category' => $category,
             'products' => Product::where('product_category_id', $category->id)->paginate(25)
         ]);
+        // Return inventory.categories.show with category and products in array
     }
 
     /**
@@ -69,6 +73,7 @@ class ProductCategoryController extends Controller
     public function edit(ProductCategory $category)
     {
         return view('inventory.categories.edit', compact('category'));
+        // Return inventory.categories.edit page with category array
     }
 
     /**
@@ -85,6 +90,7 @@ class ProductCategoryController extends Controller
         return redirect()
             ->route('categories.index')
             ->withStatus('Category updated successfully.');
+        // Update the product category and return categories.index page with message 'Category updated successfully.'
     }
 
     /**
@@ -100,12 +106,13 @@ class ProductCategoryController extends Controller
         return redirect()
             ->route('categories.index')
             ->withStatus('Category deleted successfully.');
+        // Delete the category and redirect user to categories.index page with message 'Category deleted successfully.'
     }
 
     public function export(Request $request)
     {
-        $fileName = 'categories.csv';
-        $categories = ProductCategory::all();
+        $fileName = 'categories.csv'; // Define .csv file name
+        $categories = ProductCategory::all(); // Query the needed data from DB
         $headers = array(
             "Content-type" => "text/csv",
             "Content-Disposition" => "attachment; filename=$fileName",
@@ -113,7 +120,7 @@ class ProductCategoryController extends Controller
             "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
             "Expires" => "0"
         );
-        $columns = array('name', 'number_of_product', 'stock', 'defective_stock', 'average_price_of_product');
+        $columns = array('name', 'number_of_product', 'stock', 'defective_stock', 'average_price_of_product'); // Define columns in the csv file
         $callback = function() use($categories, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
@@ -126,7 +133,9 @@ class ProductCategoryController extends Controller
                 fputcsv($file, array($row['name'], $row['number_of_product'], $row['stock'], $row['defective_stock'], $row['average_price_of_product'] ));
             }
             fclose($file);
+            // Write the data into the csv and close the writer
         };
         return response()->stream($callback, 200, $headers);
+        // Create a new streamed response object to make a download file
     }
 }

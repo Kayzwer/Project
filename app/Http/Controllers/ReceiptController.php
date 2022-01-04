@@ -23,6 +23,7 @@ class ReceiptController extends Controller
         $receipts = Receipt::paginate(25);
 
         return view('inventory.receipts.index', compact('receipts'));
+        // Return inventory.receipts.index page with splitted receipts data in array
     }
 
     /**
@@ -35,6 +36,7 @@ class ReceiptController extends Controller
         $providers = Provider::all();
 
         return view('inventory.receipts.create', compact('providers'));
+        // Return inventory.receipts.create with providers data in array
     }
 
     /**
@@ -51,6 +53,7 @@ class ReceiptController extends Controller
         return redirect()
             ->route('receipts.show', $receipt)
             ->withStatus('Receipt registered successfully, you can start adding the products belonging to it.');
+        // Store the new created receipt in database and redirect user to receipts.show page with message 'Receipt registered successfully, you can start adding the products belonging to it.'
     }
 
     /**
@@ -62,6 +65,7 @@ class ReceiptController extends Controller
     public function show(Receipt $receipt)
     {
         return view('inventory.receipts.show', compact('receipt'));
+        // Return inventory.receipts.show with receipt data in array
     }
 
     /**
@@ -77,6 +81,7 @@ class ReceiptController extends Controller
         return redirect()
             ->route('receipts.index')
             ->withStatus('Receipt removed successfully.');
+        // Delete the receipt in database and redirect user to receipts.index with message 'Receipt removed successfully.'
     }
 
     /**
@@ -97,6 +102,7 @@ class ReceiptController extends Controller
         }
 
         return back()->withStatus('Receipt completed successfully.');
+        // Store product in receipt to received_products table and redirect user to previous page with message 'Receipt completed successfully.'
     }
 
     /**
@@ -110,6 +116,7 @@ class ReceiptController extends Controller
         $products = Product::all();
 
         return view('inventory.receipts.addproduct', compact('receipt', 'products'));
+        // Return inventory.receipts.addproduct page with receipt data and products in array
     }
 
     /**
@@ -126,6 +133,7 @@ class ReceiptController extends Controller
         return redirect()
             ->route('receipts.show', $receipt)
             ->withStatus('Product added successfully.');
+        // Store the new created record in the database and redirect user to receipts.show page with message 'Product added successfully.'
     }
 
     /**
@@ -139,6 +147,7 @@ class ReceiptController extends Controller
         $products = Product::all();
 
         return view('inventory.receipts.editproduct', compact('receipt', 'receivedproduct', 'products'));
+        // Return inventory.receipts.editproduct with receipt and received product data and products in array
     }
 
     /**
@@ -155,6 +164,7 @@ class ReceiptController extends Controller
         return redirect()
             ->route('receipts.show', $receipt)
             ->withStatus('Product updated successfully.');
+        // Update the received product in database and redirect user to receipts.show page with message 'Product updated successfully.'
     }
 
     /**
@@ -170,12 +180,13 @@ class ReceiptController extends Controller
         return redirect()
             ->route('receipts.show', $receipt)
             ->withStatus('Product removed successfully.');
+        // Delete the received product in database and redirect user to receipts.show page with message 'Product removed successfully.'
     }
 
     public function export(Request $request)
     {
-        $fileName = 'receipts.csv';
-        $receipts = Receipt::all();
+        $fileName = 'receipts.csv'; // Define .csv file name
+        $receipts = Receipt::all(); // Query the needed data from DB
         $headers = array(
             "Content-type" => "text/csv",
             "Content-Disposition" => "attachment; filename=$fileName",
@@ -183,7 +194,7 @@ class ReceiptController extends Controller
             "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
             "Expires" => "0"
         );
-        $columns = array('title', 'provider', 'number_of_products', 'stock', 'defective_stock', 'created_at');
+        $columns = array('title', 'provider', 'number_of_products', 'stock', 'defective_stock', 'created_at'); // Define columns in the csv file
         $callback = function() use($receipts, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
@@ -197,7 +208,9 @@ class ReceiptController extends Controller
                 fputcsv($file, array($row['title'], $row['provider'], $row['number_of_products'], $row['stock'], $row['defective_stock'], $row['created_at']));
             }
             fclose($file);
+            // Write the data into the csv and close the writer
         };
         return response()->stream($callback, 200, $headers);
+        // Create a new streamed response object to make a download file
     }
 }

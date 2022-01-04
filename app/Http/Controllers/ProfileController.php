@@ -16,6 +16,7 @@ class ProfileController extends Controller
     public function edit()
     {
         return view('profile.edit');
+        // Return profile.edit page
     }
 
     /**
@@ -29,6 +30,7 @@ class ProfileController extends Controller
         auth()->user()->update($request->all());
 
         return back()->withStatus('Profile updated successfully.');
+        // Update user information and redirect user to previous page with 'Profile updated successfully.'
     }
 
     /**
@@ -42,5 +44,6 @@ class ProfileController extends Controller
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
         return back()->withPasswordStatus('Password updated successfully.');
+        // Update user password by getting password with view component and hash it. Then redirect user to previous page with message 'Password updated successfully.'
     }
 }

@@ -38,6 +38,7 @@ class HomeController extends Controller
             'semesterexpenses'          => $this->getMonthlyTransactions()->get('semesterexpenses'),
             'semesterincomes'           => $this->getMonthlyTransactions()->get('semesterincomes')
         ]);
+        // Return dashboard html code with calculated statistics
     }
 
     public function getMethodBalance()
@@ -52,6 +53,7 @@ class HomeController extends Controller
             $monthlyBalanceByMethod[$method->name] = $balance;
         }
         return collect(compact('monthlyBalanceByMethod', 'monthlyBalance'));
+        // Calculate monthly balance and return it as an array
     }
 
     public function getAnnualSales()
@@ -63,6 +65,7 @@ class HomeController extends Controller
             array_push($sales, $monthlySalesCount);
         }
         return "[" . implode(',', $sales) . "]";
+        // Calculate sale each year and return the joined array
     }
 
     public function getAnnualClients()
@@ -77,6 +80,7 @@ class HomeController extends Controller
             array_push($clients, $monthclients->total);
         }
         return "[" . implode(',', $clients) . "]";
+        // Calculate number of clients each year and return the joined array
     }
 
     public function getAnnualProducts()
@@ -88,6 +92,7 @@ class HomeController extends Controller
             array_push($products, $monthproducts);
         }        
         return "[" . implode(',', $products) . "]";
+        // Calculate number of products each year and return the joined array
     }
 
     public function getMonthlyTransactions()
@@ -127,4 +132,5 @@ class HomeController extends Controller
 
         return collect(compact('lastmonths', 'lastincomes', 'lastexpenses', 'semesterincomes', 'semesterexpenses'));
     }
+    // Calculate transactions for each month and return it as array
 }

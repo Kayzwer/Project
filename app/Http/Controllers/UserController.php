@@ -19,6 +19,7 @@ class UserController extends Controller
         $users = User::paginate(25);
 
         return view('users.index', compact('users'));
+        // Return users.index page with splitted users data in array
     }
 
     /**
@@ -29,6 +30,7 @@ class UserController extends Controller
     public function create()
     {
         return view('users.create');
+        // Return users.create page
     }
 
     /**
@@ -45,6 +47,7 @@ class UserController extends Controller
         User::create($request->all());
 
         return redirect()->route('users.index')->withStatus('User created successfully.');
+        // Create new user in database and redirect user to users.index page with message 'User created successfully.'
     }
 
     /**
@@ -56,6 +59,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('users.edit', compact('user'));
+        // Return users.edit page with user in array
     }
 
     /**
@@ -76,6 +80,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         return redirect()->route('users.index')->withStatus('User updated successfully.');
+        // Update the user record in database and redirect user to users.index page with message 'User updated successfully.'
     }
 
     /**
@@ -89,5 +94,6 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->withStatus('User removed successfully.');
+        // Delete the user in the database and redirect user to users.index page with message 'User updated successfully.'
     }
 }
