@@ -44,7 +44,7 @@
 
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-qty">Quantity</label>
-                                    <input type="number" name="qty" id="input-qty" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="0" required>
+                                    <input type="number" name="qty" id="input-qty" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="1" min=1 required>
                                     @include('alerts.feedback', ['field' => 'product_id'])
                                 </div>
 

@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('document_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-document_id">Document Number</label>
-                                    <input type="number" name="document_id" id="input-document_id" class="form-control form-control-alternative{{ $errors->has('document_id') ? ' is-invalid' : '' }}" placeholder="Document Number" value="{{ old('document_id') }}" required>
+                                    <input type="number" name="document_id" id="input-document_id" class="form-control form-control-alternative{{ $errors->has('document_id') ? ' is-invalid' : '' }}" placeholder="Document Number" value="{{ old('document_id') }}" required min=0>
                                     @include('alerts.feedback', ['field' => 'document_id'])
                                 </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">

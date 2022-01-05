@@ -26,11 +26,11 @@
                     </a>
                     <ul class="dropdown-menu dropdown-navbar" style="background-color: black;">
                         <li class="nav-link">
-                            <a href="{{ route('profile.edit') }}" class="nav-item dropdown-item" style="font-weight: bold; color: white;">{{ __('Profile') }}</a>
+                            <a href="{{ route('profile.edit') }}" class="nav-item dropdown-item" style="font-weight: bold; color: blue;">{{ __('Profile') }}</a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-link">
-                            <a href="{{ route('logout') }}" class="nav-item dropdown-item" onclick="event.preventDefault();  document.getElementById('logout-form').submit();" style="font-weight: bold; color: white;">{{ __('Log out') }}</a>
+                            <a href="{{ route('logout') }}" class="nav-item dropdown-item" onclick="event.preventDefault();  document.getElementById('logout-form').submit();" style="font-weight: bold; color: blue;">{{ __('Log out') }}</a>
                         </li>
                     </ul>
                 </li>
