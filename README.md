@@ -1,1 +1,1 @@
-<font size = "21">The original system github page: https://github.com/sanz/laravel-inventory</font>
+<font size="21">The original system github page: https://github.com/sanz/laravel-inventory</font>
