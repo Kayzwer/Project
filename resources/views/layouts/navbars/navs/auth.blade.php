@@ -24,7 +24,7 @@
                         </div>
                         <b class="caret d-none d-lg-block d-xl-block"></b>
                     </a>
-                    <ul class="dropdown-menu dropdown-navbar" style="background-color: black;">
+                    <ul class="dropdown-menu dropdown-navbar">
                         <li class="nav-link">
                             <a href="{{ route('profile.edit') }}" class="nav-item dropdown-item" style="font-weight: bold; color: blue;">{{ __('Profile') }}</a>
                         </li>
