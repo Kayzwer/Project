@@ -153,7 +153,7 @@ class TransactionController extends Controller
 
                 return redirect()
                     ->route('transactions.type', ['type' => 'expense'])
-                    ->withStatus('Expense recorded successfully.');
+                    ->withStatus('Expense registered successfully.');
 
             case 'payment':
                 if ($request->get('amount') > 0) {
@@ -171,7 +171,7 @@ class TransactionController extends Controller
 
                 return redirect()
                     ->route('transactions.type', ['type' => 'income'])
-                    ->withStatus('Login registered successfully.');
+                    ->withStatus('Income registered successfully.');
 
             default:
                 return redirect()
@@ -259,10 +259,6 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //if ($transaction->sale)
-        //{
-        //    return back()->withStatus('You cannot remove a transaction from a completed sale. You can delete the sale and its entire record.');
-        //}
 
         if ($transaction->transfer) {
             return back()->withStatus('You cannot remove a transaction from a transfer. You must delete the transfer to delete its records.');
@@ -273,7 +269,7 @@ class TransactionController extends Controller
 
         switch ($type) {
             case 'expense':
-                return back()->withStatus('Expenditure removed successfully.');
+                return back()->withStatus('Expense removed successfully.');
 
             case 'payment':
                 return back()->withStatus('Payment removed successfully.');

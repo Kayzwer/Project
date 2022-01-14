@@ -46,7 +46,7 @@ class UserController extends Controller
 
         User::create($request->all());
 
-        return redirect()->route('users.index')->withStatus('User created successfully.');
+        return redirect()->route('users.index')->withStatus('User registered successfully.');
         // Create new user in database and redirect user to users.index page with message 'User created successfully.'
     }
 

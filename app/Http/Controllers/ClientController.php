@@ -48,7 +48,7 @@ class ClientController extends Controller
         $client->create($request->all());
         // Get all request from view component and create new record and store in the client database.
         
-        return redirect()->route('clients.index')->withStatus('Customer registered successfully.');
+        return redirect()->route('clients.index')->withStatus('Client registered successfully.');
         // Redirect user to client list page with message 'Customer registered successfully.'
     }
 
@@ -90,7 +90,7 @@ class ClientController extends Controller
 
         return redirect()
             ->route('clients.index')
-            ->withStatus('Customer updated successfully.');
+            ->withStatus('Client updated successfully.');
         // Redirect user to client list page with message 'Customer updated successfully.'
     }
 
@@ -107,7 +107,7 @@ class ClientController extends Controller
 
         return redirect()
             ->route('clients.index')
-            ->withStatus('Customer removed successfully.');
+            ->withStatus('Client removed successfully.');
         // Redirect user to client list page with message 'Customer removed successfully.'
     }
 

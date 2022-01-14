@@ -111,7 +111,7 @@ class SaleController extends Controller
         $sale->save();
         $sale->client->save();
 
-        return back()->withStatus('The sale has been completed successfully.');
+        return back()->withStatus('Sale completed successfully.');
         // Check wether or not the product is enough. If true, store the new record in sold_product table and complete the sale record in the database and redirect user to the previous page with message 'The sale has been completed successfully.'
         // else redirect user to previous page with error message
     }
@@ -158,7 +158,7 @@ class SaleController extends Controller
     {
         $soldproduct->delete();
 
-        return back()->withStatus('Product disposed successfully.');
+        return back()->withStatus('Product removed successfully.');
         // Delete the sold product record and redirect user to previous page with message 'Product disposed successfully.'
     }
 
